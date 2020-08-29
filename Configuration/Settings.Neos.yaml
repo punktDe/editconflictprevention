@@ -1,0 +1,9 @@
+Neos:
+  Neos:
+    fusion:
+      autoInclude:
+        PunktDe.EditConflictPrevention: true
+
+  Fusion:
+    defaultContext:
+      EditConflictPrevention: 'PunktDe\EditConflictPrevention\EelHelper\ChangedNodesHelper'

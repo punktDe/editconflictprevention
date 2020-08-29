@@ -1,0 +1,116 @@
+prototype(Neos.Neos:Page) {
+    @context.hasChanges = ${node.context.inBackend == true && EditConflictPrevention.hasChangesInOtherWorkspaces(documentNode)}
+
+    head {
+        editConflictWarning = Neos.Fusion:Tag {
+            @if.inBackend = ${node.context.inBackend == true}
+            @if.hasChanges = ${hasChanges == true}
+            @position = 'after stylesheets'
+
+            tagName = 'link'
+            attributes {
+                href = Neos.Fusion:ResourceUri {
+                    path = 'resource://PunktDe.EditConflictPrevention/Public/Styles/Backend.css'
+                }
+
+                type = 'text/css'
+                rel = 'stylesheet'
+            }
+        }
+    }
+
+    editConflictWarning = Neos.Fusion:Component {
+
+        @position = 'before body'
+        @if.inBackend = ${node.context.inBackend == true}
+        @if.hasChanges = ${hasChanges == true}
+
+        changes = Neos.Fusion:Loop {
+            items = ${EditConflictPrevention.calculateChangesInOtherWorkspaces(documentNode)}
+
+            itemRenderer = Neos.Fusion:Fragment {
+
+                changeType = Neos.Fusion:Case {
+                    created {
+                        condition = ${item.changeType == 'created'}
+                        renderer = Neos.Fusion:Tag {
+                            tagName = 'span'
+                            content = 'created'
+                            attributes {
+                                class = 'editconflict-change-type-pill editconflict-created'
+                            }
+                        }
+                    }
+
+                    changed {
+                        condition = ${item.changeType == 'changed'}
+                        renderer = Neos.Fusion:Tag {
+                            tagName = 'span'
+                            content = 'changed'
+                            attributes {
+                                class = 'editconflict-change-type-pill editconflict-changed'
+                            }
+                        }
+
+                    }
+
+                    removed {
+                        condition = ${item.changeType == 'removed'}
+                        renderer = Neos.Fusion:Tag {
+                            tagName = 'span'
+                            content = 'removed'
+                            attributes {
+                                class = 'editconflict-change-type-pill editconflict-removed'
+                            }
+                        }
+                    }
+                }
+
+                subject = ${item.nodeLabel}
+
+                where = Neos.Fusion:Case {
+                    userWorkspace {
+                        condition = ${item.userWorkspace}
+                        renderer = ${item.workspaceOwnerName}
+                    }
+
+                    otherWorkspace {
+                        condition = ${true}
+                        renderer = ${item.workspaceName}
+                    }
+                }
+
+                changeDate = ${Date.format(item.date, 'Y-m-d H:i')}
+
+                renderer = afx`
+                    <tr>
+                        <td>{props.changeDate}</td>
+                        <td>{props.changeType}</td>
+                        <td>{props.subject}</td>
+                        <td>{props.where}</td>
+                    </tr>
+                `
+            }
+
+            @if.hasChanges = ${hasChanges == true}
+        }
+
+        renderer = afx`
+            <div class="editconflict-canvas">
+                <div class="editconflict-header">
+                    <h1>Caution</h1>
+                    <div>This page is currently edited by other users:</div>
+                </div>
+                <table class="editconflict-table">
+                    <tr>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Node</th>
+                        <th>Workspace</th>
+                    </tr>
+                    {props.changes}
+                </table>
+            </div>
+        `
+    }
+}

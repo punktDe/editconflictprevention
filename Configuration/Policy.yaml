@@ -1,0 +1,13 @@
+privilegeTargets:
+
+  'PunktDe\EditConflictPrevention\Security\Authorization\Privilege\Node\EditNodePrivilege':
+    'PunktDe.EditConflictPrevention.EditDocumentWithChangesInOtherWorkspaces':
+      matcher: 'hasChangesInOtherWorkspaces()'
+
+roles:
+
+  'Neos.Neos:AbstractEditor':
+    privileges:
+      -
+        privilegeTarget: 'PunktDe.EditConflictPrevention.EditDocumentWithChangesInOtherWorkspaces'
+        permission: DENY
