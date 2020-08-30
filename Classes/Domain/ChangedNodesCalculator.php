@@ -6,11 +6,11 @@ namespace PunktDe\EditConflictPrevention\Domain;
 use Neos\ContentRepository\Domain\Factory\NodeFactory;
 use Neos\ContentRepository\Domain\Model\NodeData;
 use Neos\ContentRepository\Domain\Service\Context;
-use Neos\ContentRepository\Domain\Service\NodeTypeManager;
+use Neos\ContentRepository\Domain\Service\ContextFactory;
 use Neos\Eel\FlowQuery\FlowQuery;
 use Neos\Flow\Annotations as Flow;
 use Neos\ContentRepository\Domain\Model\NodeInterface;
-use Neos\Neos\Domain\Model\User;
+use Neos\Flow\Utility\Now;
 use Neos\Neos\Service\UserService;
 use PunktDe\EditConflictPrevention\Domain\Dto\ChangedNode;
 use PunktDe\EditConflictPrevention\Domain\Repository\NodeDataRepository;
@@ -37,13 +37,13 @@ class ChangedNodesCalculator
      * @Flow\Inject
      * @var UserService
      */
-    protected  $userService;
+    protected $userService;
 
     /**
      * @Flow\Inject
-     * @var NodeTypeManager
+     * @var ContextFactory
      */
-    protected $nodeTypeMananger;
+    protected $contextFactory;
 
     /**
      * @Flow\Inject
@@ -54,27 +54,40 @@ class ChangedNodesCalculator
     /**
      * @var NodeData[][]
      */
-    protected  $changedNodeDataForDocument = [];
+    protected $changedNodeDataForDocument = [];
 
     /**
      * @var ChangedNodeCollection[]
      */
-    protected  $calculatedChangesForDocument = [];
+    protected $calculatedChangesForDocument = [];
 
     /**
-     * @var NodeInterface
+     * @var NodeInterface[]
      */
-    protected  $firstLevelDocumentNodeCache = [];
+    protected $firstLevelDocumentNodeCache = [];
 
+    /**
+     * @param NodeInterface $documentNode
+     * @return ChangedNodeCollection
+     * @throws \Neos\ContentRepository\Exception\NodeConfigurationException
+     */
     public function calculateChangesForDocument(NodeInterface $documentNode): ChangedNodeCollection
     {
+
         if (isset($this->calculatedChangesForDocument[(string)$documentNode])) {
             return $this->calculatedChangesForDocument[(string)$documentNode];
         }
 
         $changedNodes = new ChangedNodeCollection();
         foreach ($this->findChangedNodeDataForDocument($documentNode) as $nodeData) {
-            $node = $this->nodeFactory->createFromNodeData($nodeData, $documentNode->getContext());
+            $context = $this->contextFactory->create([
+                'workspaceName' => $nodeData->getWorkspace()->getName(),
+                'currentDateTime' => new Now(),
+                'dimensions' => $documentNode->getContext()->getDimensions(),
+                'targetDimensions' => $documentNode->getContext()->getTargetDimensions(),
+            ]);
+
+            $node = $this->nodeFactory->createFromNodeData($nodeData, $context);
 
             if (!$node instanceof NodeInterface) {
                 continue;
@@ -134,7 +147,7 @@ class ChangedNodesCalculator
 
     /**
      * @param NodeInterface $documentNode
-     * @return array
+     * @return NodeData[]
      */
     private function findChangedNodeDataForDocument(NodeInterface $documentNode): array
     {

@@ -30,18 +30,22 @@ class NodePrivilegeContext extends NeosNodePrivilegeContext
 
     public function hasChangesInOtherWorkspaces(): bool
     {
-        $return = null;
 
-        $documentNode = $this->changedNodesCalculator->resolveParentDocumentNode($this->node);
-
-        if ($documentNode === $this->node) {
-            $return = false;
-        } else {
-            $return = $this->changedNodesCalculator->documentHasChangesInOtherWorkspace($documentNode);
-        }
+        $return = $this->hasChangesInOtherWorkspaceInternal();
 
         $this->logger->debug(sprintf('Node privilege hasChangesInOtherWorkspaces for node %s returns %s', $this->node, $return ? 'true' : 'false'));
 
         return $return;
+    }
+
+    private function hasChangesInOtherWorkspaceInternal(): bool
+    {
+        $documentNode = $this->changedNodesCalculator->resolveParentDocumentNode($this->node);
+
+        if ($documentNode === $this->node) {
+            return false;
+        }
+
+        return $this->changedNodesCalculator->documentHasChangesInOtherWorkspace($documentNode);
     }
 }

@@ -30,64 +30,14 @@ prototype(Neos.Neos:Page) {
 
             itemRenderer = Neos.Fusion:Fragment {
 
-                changeType = Neos.Fusion:Case {
-                    created {
-                        condition = ${item.changeType == 'created'}
-                        renderer = Neos.Fusion:Tag {
-                            tagName = 'span'
-                            content = 'created'
-                            attributes {
-                                class = 'editconflict-change-type-pill editconflict-created'
-                            }
-                        }
-                    }
-
-                    changed {
-                        condition = ${item.changeType == 'changed'}
-                        renderer = Neos.Fusion:Tag {
-                            tagName = 'span'
-                            content = 'changed'
-                            attributes {
-                                class = 'editconflict-change-type-pill editconflict-changed'
-                            }
-                        }
-
-                    }
-
-                    removed {
-                        condition = ${item.changeType == 'removed'}
-                        renderer = Neos.Fusion:Tag {
-                            tagName = 'span'
-                            content = 'removed'
-                            attributes {
-                                class = 'editconflict-change-type-pill editconflict-removed'
-                            }
-                        }
-                    }
-                }
-
                 subject = ${item.nodeLabel}
-
-                where = Neos.Fusion:Case {
-                    userWorkspace {
-                        condition = ${item.userWorkspace}
-                        renderer = ${item.workspaceOwnerName}
-                    }
-
-                    otherWorkspace {
-                        condition = ${true}
-                        renderer = ${item.workspaceName}
-                    }
-                }
-
-                changeDate = ${Date.format(item.date, 'Y-m-d H:i')}
 
                 renderer = afx`
                     <tr>
-                        <td>{props.changeDate}</td>
-                        <td>{props.changeType}</td>
+                        <td><PunktDe.EditConflictPrevention:Components.Atom.ChangeDate /></td>
+                        <td><PunktDe.EditConflictPrevention:Components.Atom.ChangeType /></td>
                         <td>{props.subject}</td>
-                        <td>{props.where}</td>
+                        <td><PunktDe.EditConflictPrevention:Components.Molecule.Workspace /></td>
                     </tr>
                 `
             }
@@ -99,7 +49,7 @@ prototype(Neos.Neos:Page) {
             <div class="editconflict-canvas">
                 <div class="editconflict-header">
                     <h1>Caution</h1>
-                    <div>This page is currently edited by other users:</div>
+                    <div>This page has changes in other workspaces</div>
                 </div>
                 <table class="editconflict-table">
                     <tr>

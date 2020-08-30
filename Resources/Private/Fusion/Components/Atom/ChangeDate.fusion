@@ -1,0 +1,34 @@
+prototype(PunktDe.EditConflictPrevention:Components.Atom.ChangeDate) < prototype(Neos.Fusion:Tag) {
+    @context.timeDiff = ${Date.diff(item.date, Date.now())}
+    tagName = 'time'
+    content = Neos.Fusion:Case {
+        years {
+            condition = ${String.toInteger(Date.format(timeDiff, '%Y')) > 0}
+            renderer = ${Date.format(timeDiff, '%Y') + ' years ago'}
+        }
+        months {
+            condition = ${String.toInteger(Date.format(timeDiff, '%m')) > 0}
+            renderer = ${Date.format(timeDiff, '%m') + ' months ago'}
+        }
+        days {
+            condition = ${String.toInteger(Date.format(timeDiff, '%d')) > 0}
+            renderer = ${Date.format(timeDiff, '%d') + ' days ago'}
+        }
+        hours {
+            condition = ${String.toInteger(Date.format(timeDiff, '%H')) > 0}
+            renderer = ${Date.format(timeDiff, '%H') + ' hours ago'}
+        }
+        minutes {
+            condition = ${String.toInteger(Date.format(timeDiff, '%m')) > 0}
+            renderer = ${Date.format(timeDiff, '%i') + ' minutes ago'}
+        }
+        default {
+            condition = ${true}
+            renderer = 'Just now'
+        }
+    }
+    attributes {
+        datetime = ${Date.format(item.date, "Y-m-dTH:i:s")}
+        title = ${Date.format(item.date, "Y-m-d H:i:s")}
+    }
+}

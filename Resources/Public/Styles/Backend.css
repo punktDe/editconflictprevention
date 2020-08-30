@@ -16,10 +16,11 @@ body {
     background-color: #141414;
     color: #fff;
     padding: 1rem;
+    margin-bottom: 1rem;
 }
 
 .editconflict-header {
-    background-color: #323232;
+    background-color: #ff460d;
     padding: 1rem;
     margin-bottom: 1rem;
 }
@@ -36,6 +37,7 @@ body {
 .editconflict-table th, td {
     padding: .5rem 1rem;
     text-align: left;
+    vertical-align: top;
     border-bottom: 1px solid #222;
 }
 
@@ -55,10 +57,16 @@ body {
 
 .editconflict-table .editconflict-changed {
     background-color: #00ADEE;
-
 }
 
 .editconflict-table .editconflict-removed {
     background-color: #ff460d;
 }
 
+.editconflict-table a {
+    color: #bbbbbb;
+}
+
+.editconflict-table .editconflict-contact {
+    color: #bbbbbb;
+}

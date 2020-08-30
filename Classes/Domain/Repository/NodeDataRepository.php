@@ -59,11 +59,13 @@ class NodeDataRepository extends Repository
         $queryBuilder->select('n')
             ->from(NodeData::class, 'n')
             ->where('n.workspace != :userWorkspace')
-            ->andWhere('n.workspace != :liveWorkspace');
+            ->andWhere('n.workspace != :liveWorkspace')
+            ->andWhere('n.dimensionsHash = :dimensionsHash');
 
         $queryBuilder->setParameters([
             ':userWorkspace' => $userWorkspace->getName(),
-            ':liveWorkspace' => 'live'
+            ':liveWorkspace' => 'live',
+            ':dimensionsHash' => $documentNode->getNodeData()->getDimensionsHash(),
         ]);
 
         $pathCandidates = [];
@@ -74,7 +76,8 @@ class NodeDataRepository extends Repository
         }
 
         $queryBuilder->andWhere(implode(' OR ', $pathCandidates));
-
+//echo $queryBuilder->getQuery()->getSQL();
+//\Neos\Flow\var_dump($queryBuilder->getQuery()->getParameters(), __METHOD__ . ':' . __LINE__);
         return $queryBuilder->getQuery()->execute();
     }
 }

@@ -5,6 +5,8 @@ namespace PunktDe\EditConflictPrevention\Domain\Dto;
 
 use Neos\ContentRepository\Domain\Model\Node;
 use Neos\ContentRepository\Domain\Model\NodeInterface;
+use Neos\Party\Domain\Model\ElectronicAddress;
+use Neos\Party\Domain\Model\Person;
 
 final class ChangedNode
 {
@@ -46,6 +48,12 @@ final class ChangedNode
     public function getWorkspaceOwnerName(): string
     {
         return $this->node->getWorkspace()->getOwner()->getLabel();
+    }
+
+    public function getWorkspaceOwnerPrimaryElectronicAddress(): ?ElectronicAddress
+    {
+        $owner = $this->node->getWorkspace()->getOwner();
+        return $owner instanceof Person ? $owner->getPrimaryElectronicAddress() : null;
     }
 
     public function getWorkspaceName(): string
