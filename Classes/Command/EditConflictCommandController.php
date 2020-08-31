@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace PunktDe\EditConflictPrevention\Command;
 
-
 use Neos\Flow\Annotations as Flow;
 use Neos\ContentRepository\Domain\Repository\WorkspaceRepository;
 use Neos\Flow\Cli\CommandController;
@@ -41,5 +40,4 @@ class EditConflictCommandController extends CommandController
 
         \Neos\Flow\var_dump($result, __METHOD__ . ':' . __LINE__);
     }
-
 }

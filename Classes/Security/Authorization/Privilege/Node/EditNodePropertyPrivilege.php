@@ -10,7 +10,6 @@ namespace PunktDe\EditConflictPrevention\Security\Authorization\Privilege\Node;
 
 use Neos\ContentRepository\Security\Authorization\Privilege\Node\EditNodePropertyPrivilege as NeosEditNodePropertyPrivilege;
 
-
 class EditNodePropertyPrivilege extends NeosEditNodePropertyPrivilege
 {
     /**

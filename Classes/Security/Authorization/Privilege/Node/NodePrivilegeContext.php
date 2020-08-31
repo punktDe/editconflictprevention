@@ -17,7 +17,7 @@ use PunktDe\EditConflictPrevention\Domain\ChangedNodesCalculator;
 class NodePrivilegeContext extends NeosNodePrivilegeContext
 {
     /**
-     * @FLow\Inject
+     * @Flow\Inject
      * @var LoggerInterface
      */
     protected $logger;
