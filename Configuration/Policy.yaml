@@ -1,7 +1,11 @@
 privilegeTargets:
 
   'PunktDe\EditConflictPrevention\Security\Authorization\Privilege\Node\EditNodePrivilege':
-    'PunktDe.EditConflictPrevention.EditDocumentWithChangesInOtherWorkspaces':
+    'PunktDe.EditConflictPrevention.EditNodeWithChangesInOtherWorkspaces':
+      matcher: 'hasChangesInOtherWorkspaces()'
+
+  'PunktDe\EditConflictPrevention\Security\Authorization\Privilege\Node\EditNodePropertyPrivilege':
+    'PunktDe.EditConflictPrevention.EditNodePropertiesWithChangesInOtherWorkspaces':
       matcher: 'hasChangesInOtherWorkspaces()'
 
 roles:
@@ -9,5 +13,8 @@ roles:
   'Neos.Neos:AbstractEditor':
     privileges:
       -
-        privilegeTarget: 'PunktDe.EditConflictPrevention.EditDocumentWithChangesInOtherWorkspaces'
+        privilegeTarget: 'PunktDe.EditConflictPrevention.EditNodeWithChangesInOtherWorkspaces'
+        permission: DENY
+      -
+        privilegeTarget: 'PunktDe.EditConflictPrevention.EditNodePropertiesWithChangesInOtherWorkspaces'
         permission: DENY

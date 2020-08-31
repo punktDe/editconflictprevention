@@ -119,11 +119,12 @@ class ChangedNodesCalculator
     {
         $nodePath = $node->getPath();
 
-        foreach ($this->firstLevelDocumentNodeCache as $documentNodePath => $documentNode) {
-            if (strpos($nodePath, $documentNodePath) === 0) {
-                return $documentNode;
-            }
-        }
+
+//        foreach ($this->firstLevelDocumentNodeCache as $documentNodePath => $documentNode) {
+//            if (strpos($nodePath, $documentNodePath) === 0) {
+//                return $documentNode;
+//            }
+//        }
 
         /** @var NodeInterface $parent */
         $parent = (new FlowQuery([$node]))->closest('[instanceof ' . self::NODETYPE_NEOS_DOCUMENT . ']')->get(0);

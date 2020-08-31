@@ -55,6 +55,11 @@ class NodeDataRepository extends Repository
 
         $contentCollectionPaths = array_column($queryBuilder->getQuery()->execute(), 'path');
 
+        // Either the documentNode has no content collection or the documentNot is just created and not persisted yet
+        if (empty($contentCollectionPaths)) {
+            return [];
+        }
+
         $queryBuilder = $this->entityManager->createQueryBuilder();
         $queryBuilder->select('n')
             ->from(NodeData::class, 'n')
@@ -76,8 +81,7 @@ class NodeDataRepository extends Repository
         }
 
         $queryBuilder->andWhere(implode(' OR ', $pathCandidates));
-//echo $queryBuilder->getQuery()->getSQL();
-//\Neos\Flow\var_dump($queryBuilder->getQuery()->getParameters(), __METHOD__ . ':' . __LINE__);
+
         return $queryBuilder->getQuery()->execute();
     }
 }
