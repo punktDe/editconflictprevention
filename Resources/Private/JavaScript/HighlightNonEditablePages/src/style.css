@@ -1,0 +1,39 @@
+.editconflictTable {
+    width: 100%;
+    padding-top: 1rem;
+}
+
+.editconflictHint {
+    padding: 0 1rem;
+}
+
+.editconflictTable th, td {
+    padding: .5rem 1rem;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid #222;
+}
+
+.editconflictTable td {
+    background: #323232;
+}
+
+.editconflictCreated,
+.editconflictChanged,
+.editconflictRemoved {
+    padding: .15rem .25rem;
+    border-radius: 12px;
+    color: #323232;;
+}
+
+.editconflictCreated {
+    background-color: #00a338;
+}
+
+.editconflictChanged {
+    background-color: #00ADEE;
+}
+
+.editconflictRemoved {
+    background-color: #ff460d;
+}

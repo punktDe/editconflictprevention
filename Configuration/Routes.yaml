@@ -1,0 +1,8 @@
+- name: 'PunktDe.EditConflictPrevention:Api'
+  uriPattern: 'editconflictprevention/api/{@action}'
+  defaults:
+    '@package':    'PunktDe.EditConflictPrevention'
+    '@controller': 'ChangedNodesApi'
+    '@format':     'json'
+    '@action':     'nodeHasChanges'
+  appendExceedingArguments: true

@@ -1,9 +1,22 @@
 Neos:
   Neos:
-    fusion:
-      autoInclude:
-        PunktDe.EditConflictPrevention: true
+    Ui:
+      resources:
+        javascript:
+          'PunktDe.EditConflictPrevention:HighlightNonEditablePage':
+            resource: resource://PunktDe.EditConflictPrevention/Public/HighlightNonEditablePages/Plugin.js
 
-  Fusion:
-    defaultContext:
-      EditConflictPrevention: 'PunktDe\EditConflictPrevention\EelHelper\ChangedNodesHelper'
+  Flow:
+    security:
+      authentication:
+        providers:
+          'Neos.Neos:Backend':
+            requestPatterns:
+              'PunktDe.EditConflictPrevention:ApiControllers':
+                pattern: 'ControllerObjectName'
+                patternOptions:
+                  controllerObjectNamePattern: 'PunktDe\EditConflictPrevention\Controller\.*'
+    mvc:
+      routes:
+        'PunktDe.EditConflictPrevention':
+          position: 'before Neos.Neos'

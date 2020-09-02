@@ -1,4 +1,7 @@
 privilegeTargets:
+  'Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
+    'PunktDe.EditConflictPrevention.Api':
+      matcher: 'method(PunktDe\EditConflictPrevention\Controller\ChangedNodesApiController->(.*)Action())'
 
   'PunktDe\EditConflictPrevention\Security\Authorization\Privilege\Node\EditNodePrivilege':
     'PunktDe.EditConflictPrevention.EditNodeWithChangesInOtherWorkspaces':
@@ -9,9 +12,13 @@ privilegeTargets:
       matcher: 'hasChangesInOtherWorkspaces()'
 
 roles:
-
+#  'Neos.Flow:Everybody':
+#    privileges:
   'Neos.Neos:AbstractEditor':
     privileges:
+      -
+        privilegeTarget: 'PunktDe.EditConflictPrevention.Api'
+        permission: GRANT
       -
         privilegeTarget: 'PunktDe.EditConflictPrevention.EditNodeWithChangesInOtherWorkspaces'
         permission: DENY
