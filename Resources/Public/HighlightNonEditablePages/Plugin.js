@@ -289,7 +289,6 @@ var _redux = __webpack_require__(3);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _neosUiExtensibility2.default)('PunktDe.EditConflictPrevention:HighlightNonEditablePage', {}, function (globalRegistry) {
-
     var reducersRegistry = globalRegistry.get('reducers');
     reducersRegistry.set('punktde/editconflictprevention', { reducer: _redux.reducer });
 
@@ -425,6 +424,10 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _redux = __webpack_require__(3);
 
+var _neosUiI18n = __webpack_require__(24);
+
+var _neosUiI18n2 = _interopRequireDefault(_neosUiI18n);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -483,13 +486,14 @@ var PageHasEditsButton = exports.PageHasEditsButton = function PageHasEditsButto
                     _reactUiComponents.Button,
                     {
                         style: 'error',
+                        hoverStyle: 'error',
                         onClick: function onClick() {
                             return open();
                         }
                     },
-                    'Changes Detected\xA0',
+                    _react2.default.createElement(_neosUiI18n2.default, { id: 'PunktDe.EditConflictPrevention:Main:button.label' }),
                     _react2.default.createElement(_reactUiComponents.Icon, {
-                        icon: 'edit' })
+                        icon: 'warning' })
                 ) : '';
             }
         }]);
@@ -568,6 +572,10 @@ var _style2 = _interopRequireDefault(_style);
 
 var _ChangeTableRow = __webpack_require__(23);
 
+var _neosUiI18n = __webpack_require__(24);
+
+var _neosUiI18n2 = _interopRequireDefault(_neosUiI18n);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -635,7 +643,7 @@ var PageEditsOverviewModal = exports.PageEditsOverviewModal = function PageEdits
                             return _this3.props.close();
                         }
                     },
-                    'Close'
+                    _react2.default.createElement(_neosUiI18n2.default, { id: 'PunktDe.EditConflictPrevention:Main:modal.button.close.caption' })
                 );
             }
         }, {
@@ -650,7 +658,7 @@ var PageEditsOverviewModal = exports.PageEditsOverviewModal = function PageEdits
                     _react2.default.createElement(
                         'div',
                         null,
-                        'This page has changes in other workspaces'
+                        _react2.default.createElement(_neosUiI18n2.default, { id: 'PunktDe.EditConflictPrevention:Main:modal.hint' })
                     ),
                     _react2.default.createElement(
                         'table',
@@ -661,22 +669,22 @@ var PageEditsOverviewModal = exports.PageEditsOverviewModal = function PageEdits
                             _react2.default.createElement(
                                 'th',
                                 null,
-                                'Date'
+                                _react2.default.createElement(_neosUiI18n2.default, { id: 'PunktDe.EditConflictPrevention:Main:modal.thead.date' })
                             ),
                             _react2.default.createElement(
                                 'th',
                                 null,
-                                'Type'
+                                _react2.default.createElement(_neosUiI18n2.default, { id: 'PunktDe.EditConflictPrevention:Main:modal.thead.type' })
                             ),
                             _react2.default.createElement(
                                 'th',
                                 null,
-                                'Node'
+                                _react2.default.createElement(_neosUiI18n2.default, { id: 'PunktDe.EditConflictPrevention:Main:modal.thead.node' })
                             ),
                             _react2.default.createElement(
                                 'th',
                                 null,
-                                'Workspace'
+                                _react2.default.createElement(_neosUiI18n2.default, { id: 'PunktDe.EditConflictPrevention:Main:modal.thead.workspace' })
                             )
                         ),
                         this.state.changedNodes.map(function (node) {
@@ -702,10 +710,13 @@ var PageEditsOverviewModal = exports.PageEditsOverviewModal = function PageEdits
                     title: _react2.default.createElement(
                         'h2',
                         null,
-                        'Caution: Changes Detected'
+                        _react2.default.createElement(_neosUiI18n2.default, { id: 'PunktDe.EditConflictPrevention:Main:modal.title' }),
+                        '\xA0',
+                        _react2.default.createElement(_reactUiComponents.Icon, { icon: 'warning' })
                     ),
                     isOpen: isOpen,
                     type: 'error',
+                    style: 'wide',
                     onRequestClose: function onRequestClose() {
                         return close();
                     },
@@ -1312,6 +1323,10 @@ var _style = __webpack_require__(8);
 
 var _style2 = _interopRequireDefault(_style);
 
+var _neosUiI18n = __webpack_require__(24);
+
+var _neosUiI18n2 = _interopRequireDefault(_neosUiI18n);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1360,7 +1375,7 @@ var ChangeTableRow = exports.ChangeTableRow = function (_PureComponent) {
                     _react2.default.createElement(
                         'span',
                         { className: this.getClassNameForChangeType() },
-                        this.props.changeType
+                        _react2.default.createElement(_neosUiI18n2.default, { id: 'PunktDe.EditConflictPrevention:Main:changeType.' + this.props.changeType })
                     )
                 ),
                 _react2.default.createElement(
@@ -1379,6 +1394,21 @@ var ChangeTableRow = exports.ChangeTableRow = function (_PureComponent) {
 
     return ChangeTableRow;
 }(_react.PureComponent);
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _readFromConsumerApi = __webpack_require__(0);
+
+var _readFromConsumerApi2 = _interopRequireDefault(_readFromConsumerApi);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = (0, _readFromConsumerApi2.default)('NeosProjectPackages')().NeosUiI18n;
 
 /***/ })
 /******/ ]);

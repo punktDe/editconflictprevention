@@ -3,11 +3,15 @@ declare(strict_types=1);
 
 namespace PunktDe\EditConflictPrevention\Controller;
 
+use DateTimeInterface;
 use Neos\Flow\Annotations as Flow;
 use Neos\ContentRepository\Domain\Model\NodeInterface;
 use Neos\ContentRepository\Exception\NodeConfigurationException;
 use Neos\ContentRepository\Domain\Model\Node;
 use Neos\ContentRepository\Domain\Repository\NodeDataRepository;
+use Neos\Flow\I18n\Exception\IndexOutOfBoundsException;
+use Neos\Flow\I18n\Exception\InvalidFormatPlaceholderException;
+use Neos\Flow\I18n\Translator;
 use Neos\Flow\Mvc\Controller\ActionController;
 use Neos\Flow\Mvc\View\JsonView;
 use Neos\Flow\Persistence\Exception\IllegalObjectTypeException;
@@ -48,15 +52,17 @@ class ChangedNodesApiController extends ActionController
 
     /**
      * @param string $nodePath
-     * @throws NodeConfigurationException
      * @throws IllegalObjectTypeException
+     * @throws IndexOutOfBoundsException
+     * @throws InvalidFormatPlaceholderException
+     * @throws NodeConfigurationException
      */
     public function getChangedNodesAction(string $nodePath)
     {
         $documentNode = $this->getNodeInterfaceFromPath($nodePath);
-
         $changedNodes = $this->changedNodesCalculator->calculateChangesForDocument($documentNode);
         $result = [];
+
         foreach ($changedNodes as $changedNode) {
             $result[] = $this->parseChangedNode($changedNode);
         }
@@ -78,6 +84,8 @@ class ChangedNodesApiController extends ActionController
     /**
      * @param ChangedNode $changedNode
      * @return string[]
+     * @throws IndexOutOfBoundsException
+     * @throws InvalidFormatPlaceholderException
      */
     protected function parseChangedNode(ChangedNode $changedNode): array
     {
@@ -101,23 +109,33 @@ class ChangedNodesApiController extends ActionController
         return $changedNode->getWorkspaceOwnerName();
     }
 
-
-    protected function parseChangedDate(\DateTimeInterface $dateTime): string
+    /**
+     * @param DateTimeInterface $dateTime
+     * @return string
+     * @throws IndexOutOfBoundsException
+     * @throws InvalidFormatPlaceholderException
+     */
+    protected function parseChangedDate(DateTimeInterface $dateTime): string
     {
+        $translator = new Translator();
+
         $diff = time() - $dateTime->getTimestamp();
-        $periods[] = [60 * 100, 60, '%s minutes ago', 'one minute ago'];
-        $periods[] = [3600 * 70, 3600, '%s hours ago', 'an hour ago'];
-        $periods[] = [3600 * 24 * 10, 3600 * 24, '%s days ago', 'yesterday'];
-        $periods[] = [3600 * 24 * 30, 3600 * 24 * 7, '%s weeks ago', 'one week ago'];
-        $periods[] = [3600 * 24 * 30 * 30, 3600 * 24 * 30, '%s months ago', 'last month'];
-        $periods[] = [INF, 3600 * 24 * 265, '%s years ago', 'last year'];
+        $periods[] = [60 * 100, 60, 'minutes'];
+        $periods[] = [3600 * 24, 3600, 'hours'];
+        $periods[] = [3600 * 24 * 7, 3600 * 24, 'days'];
+        $periods[] = [3600 * 24 * 30, 3600 * 24 * 7, 'weeks'];
+        $periods[] = [3600 * 24 * 30 * 12, 3600 * 24 * 30, 'months'];
+        $periods[] = [INF, 3600 * 24 * 365, 'years'];
+
+        if ($diff < 60) {
+            return $translator->translateById('timespan.recent', [], null, null, 'Main', 'PunktDe.EditConflictPrevention');
+        }
         foreach ($periods as $period) {
             if ($diff > $period[0]) {
                 continue;
             }
             $diff = floor($diff / $period[1]);
-            return sprintf($diff > 1 ? $period[2] : $period[3], $diff);
+            return $translator->translateById('timespan.' . $period[2], ['count' => $diff], $diff, null, 'Main', 'PunktDe.EditConflictPrevention');
         }
-        return 'just now';
     }
 }

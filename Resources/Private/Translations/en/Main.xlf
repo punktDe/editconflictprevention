@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file product-name="PunktDe.EditConflictPrevention" source-language="en" datatype="plaintext">
+        <body>
+            <trans-unit id="button.label" xml:space="preserve">
+                <source>This page has unpublished changes. Click here for more information. </source>
+            </trans-unit>
+
+            <trans-unit id="modal.title" xml:space="preserve">
+                <source>Changes detected</source>
+            </trans-unit>
+            <trans-unit id="modal.hint" xml:space="preserve">
+                <source>This page has changes in other workspaces. Further changes are not possible until the previous changes are published.</source>
+            </trans-unit>
+            <trans-unit id="modal.thead.date" xml:space="preserve">
+                <source>Date</source>
+            </trans-unit>
+            <trans-unit id="modal.thead.type" xml:space="preserve">
+                <source>Type</source>
+            </trans-unit>
+            <trans-unit id="modal.thead.node" xml:space="preserve">
+                <source>Node</source>
+            </trans-unit>
+            <trans-unit id="modal.thead.workspace" xml:space="preserve">
+                <source>Workspace</source>
+            </trans-unit>
+            <trans-unit id="modal.button.close.caption" xml:space="preserver">
+                <source>Close</source>
+            </trans-unit>
+
+            <trans-unit id="changeType.created" xml:space="preserve">
+                <source>created</source>
+            </trans-unit>
+            <trans-unit id="changeType.changed" xml:space="preserve">
+                <source>changed</source>
+            </trans-unit>
+            <trans-unit id="changeType.removed" xml:space="preserve">
+                <source>removed</source>
+            </trans-unit>
+
+            <trans-unit id="timespan.recent">
+                <source>just now</source>
+            </trans-unit>
+
+            <group id="timespan.minutes" restype="x-gettext-plurals">
+                <trans-unit id="timespan.minutes[0]">
+                    <source>just now</source>
+                </trans-unit>
+                <trans-unit id="timespan.minutes[1]">
+                    <source>{count} minutes ago</source>
+                </trans-unit>
+            </group>
+            <group id="timespan.hours" restype="x-gettext-plurals">
+                <trans-unit id="timespan.hours[0]">
+                    <source>1 hour ago</source>
+                </trans-unit>
+                <trans-unit id="timespan.hours[1]">
+                    <source>{count} hours ago</source>
+                </trans-unit>
+            </group>
+            <group id="timespan.days" restype="x-gettext-plurals">
+                <trans-unit id="timespan.days[0]">
+                    <source>yesterday</source>
+                </trans-unit>
+                <trans-unit id="timespan.days[1]">
+                    <source>{count} days ago</source>
+                </trans-unit>
+            </group>
+            <group id="timespan.weeks" restype="x-gettext-plurals">
+                <trans-unit id="timespan.weeks[0]">
+                    <source>last week</source>
+                </trans-unit>
+                <trans-unit id="timespan.weeks[1]">
+                    <source>{count} weeks ago</source>
+                </trans-unit>
+            </group>
+            <group id="timespan.months" restype="x-gettext-plurals">
+                <trans-unit id="timespan.months[0]">
+                    <source>last month</source>
+                </trans-unit>
+                <trans-unit id="timespan.months[1]">
+                    <source>{count} months ago</source>
+                </trans-unit>
+            </group>
+            <group id="timespan.years" restype="x-gettext-plurals">
+                <trans-unit id="timespan.years[0]">
+                    <source>last year</source>
+                </trans-unit>
+                <trans-unit id="timespan.years[1]">
+                    <source>{count} years ago</source>
+                </trans-unit>
+            </group>
+        </body>
+    </file>
+</xliff>

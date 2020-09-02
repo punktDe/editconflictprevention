@@ -20,3 +20,8 @@ Neos:
       routes:
         'PunktDe.EditConflictPrevention':
           position: 'before Neos.Neos'
+
+    userInterface:
+      translation:
+        autoInclude:
+          'PunktDe.EditConflictPrevention': ['Main']

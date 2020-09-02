@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {Dialog, Button} from '@neos-project/react-ui-components';
+import {Dialog, Button, Icon} from '@neos-project/react-ui-components';
 import PropTypes from 'prop-types';
 import {$get, $transform} from "plow-js";
 import {connect} from 'react-redux';
@@ -7,6 +7,7 @@ import {actions as localActions} from '../redux';
 import {fetchWithErrorHandling} from '@neos-project/neos-ui-backend-connector';
 import styles from '../style.css';
 import {ChangeTableRow} from "./ChangeTableRow";
+import I18n from '@neos-project/neos-ui-i18n';
 
 @connect(
     $transform({
@@ -55,7 +56,7 @@ export const PageEditsOverviewModal = () => {
                     style="lighter"
                     hoverStyle="brand"
                     onClick={() => this.props.close()}
-                >Close</Button>
+                ><I18n id="PunktDe.EditConflictPrevention:Main:modal.button.close.caption" /></Button>
             );
         }
 
@@ -64,13 +65,13 @@ export const PageEditsOverviewModal = () => {
 
             return isOpen ? (
                 <div className={styles.editconflictHint}>
-                    <div>This page has changes in other workspaces</div>
+                    <div><I18n id="PunktDe.EditConflictPrevention:Main:modal.hint"/></div>
                     <table className={styles.editconflictTable}>
                         <thead>
-                            <th>Date</th>
-                            <th>Type</th>
-                            <th>Node</th>
-                            <th>Workspace</th>
+                            <th><I18n id="PunktDe.EditConflictPrevention:Main:modal.thead.date"/></th>
+                            <th><I18n id="PunktDe.EditConflictPrevention:Main:modal.thead.type"/></th>
+                            <th><I18n id="PunktDe.EditConflictPrevention:Main:modal.thead.node"/></th>
+                            <th><I18n id="PunktDe.EditConflictPrevention:Main:modal.thead.workspace"/></th>
                         </thead>
                         {this.state.changedNodes.map(node => {
                             return (<ChangeTableRow
@@ -90,9 +91,13 @@ export const PageEditsOverviewModal = () => {
             return (
                 <Dialog
                     actions={[this.renderCloseAction()]}
-                    title={<h2>Caution: Changes Detected</h2>}
+                    title={<h2>
+                        <I18n id="PunktDe.EditConflictPrevention:Main:modal.title" />&nbsp;
+                        <Icon icon="warning"/>
+                    </h2>}
                     isOpen={isOpen}
                     type="error"
+                    style="wide"
                     onRequestClose={() => close()}
                     children={this.renderConflictsHint()}
                 >

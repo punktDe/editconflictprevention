@@ -5,6 +5,7 @@ import {fetchWithErrorHandling} from '@neos-project/neos-ui-backend-connector';
 import {Button, Icon} from '@neos-project/react-ui-components';
 import PropTypes from 'prop-types';
 import {actions as localActions} from '../redux';
+import I18n from '@neos-project/neos-ui-i18n';
 
 @connect(
     $transform({
@@ -46,11 +47,12 @@ export const PageHasEditsButton = () => {
             return (this.state.hasNonEditableContent) ? (
                 <Button
                     style="error"
+                    hoverStyle="error"
                     onClick={() => open()}
                     >
-                    Changes Detected&nbsp;
+                    <I18n id="PunktDe.EditConflictPrevention:Main:button.label" />
                     <Icon
-                        icon="edit" />
+                        icon="warning" />
                 </Button>
             ) : '';
         }
