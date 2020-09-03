@@ -5,6 +5,10 @@ Neos:
         javascript:
           'PunktDe.EditConflictPrevention:HighlightNonEditablePage':
             resource: resource://PunktDe.EditConflictPrevention/Public/HighlightNonEditablePages/Plugin.js
+    userInterface:
+      translation:
+        autoInclude:
+          'PunktDe.EditConflictPrevention': ['Main']
 
   Flow:
     security:
@@ -21,7 +25,3 @@ Neos:
         'PunktDe.EditConflictPrevention':
           position: 'before Neos.Neos'
 
-    userInterface:
-      translation:
-        autoInclude:
-          'PunktDe.EditConflictPrevention': ['Main']

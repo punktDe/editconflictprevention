@@ -292,6 +292,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     var reducersRegistry = globalRegistry.get('reducers');
     reducersRegistry.set('punktde/editconflictprevention', { reducer: _redux.reducer });
 
+    console.log(globalRegistry.get('i18n'));
     var containerRegistry = globalRegistry.get('containers');
     containerRegistry.set('SecondaryToolbar/Right/NonEditableContent', (0, _PageHasEditsButton.PageHasEditsButton)());
     containerRegistry.set('Modals/PageHasEditsModal', (0, _PageEditsOverviewModal.PageEditsOverviewModal)());
@@ -1345,6 +1346,47 @@ var ChangeTableRow = exports.ChangeTableRow = function (_PureComponent) {
     }
 
     _createClass(ChangeTableRow, [{
+        key: 'getReadableTimeDifference',
+        value: function getReadableTimeDifference(timestamp) {
+            var currentTimestamp = Math.floor(Date.now() / 1000);
+            var diff = currentTimestamp - timestamp;
+            if (diff < 60) {
+                return _react2.default.createElement(_neosUiI18n2.default, { id: 'PunktDe.EditConflictPrevention:Main:timespan.recent' });
+            }
+
+            var timePeriods = [[60 * 100, 60, 'minutes'], [3600 * 24, 3600, 'hours'], [3600 * 24 * 7, 3600 * 24, 'days'], [3600 * 24 * 30, 3600 * 24 * 7, 'weeks'], [3600 * 24 * 30 * 12, 3600 * 24 * 30, 'months'], [Infinity, 3600 * 24 * 365, 'years']];
+
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = timePeriods[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var timePeriod = _step.value;
+
+                    if (diff > timePeriod[0]) {
+                        continue;
+                    }
+
+                    var elapsedPeriods = Math.floor(diff / timePeriod[1]);
+                    return _react2.default.createElement(_neosUiI18n2.default, { id: 'PunktDe.EditConflictPrevention:Main:timespan.' + timePeriod[2] + '.' + (diff > 1 ? 1 : 0), params: { count: elapsedPeriods } });
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+        }
+    }, {
         key: 'getClassNameForChangeType',
         value: function getClassNameForChangeType() {
             switch (this.props.changeType) {
@@ -1367,7 +1409,7 @@ var ChangeTableRow = exports.ChangeTableRow = function (_PureComponent) {
                 _react2.default.createElement(
                     'td',
                     null,
-                    this.props.changeDate
+                    this.getReadableTimeDifference(this.props.changeDate)
                 ),
                 _react2.default.createElement(
                     'td',

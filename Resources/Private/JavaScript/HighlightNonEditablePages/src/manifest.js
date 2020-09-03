@@ -7,6 +7,7 @@ manifest('PunktDe.EditConflictPrevention:HighlightNonEditablePage', {}, globalRe
     const reducersRegistry = globalRegistry.get('reducers');
     reducersRegistry.set('punktde/editconflictprevention', {reducer});
 
+    console.log(globalRegistry.get('i18n'));
     const containerRegistry = globalRegistry.get('containers');
     containerRegistry.set('SecondaryToolbar/Right/NonEditableContent', PageHasEditsButton());
     containerRegistry.set('Modals/PageHasEditsModal', PageEditsOverviewModal());

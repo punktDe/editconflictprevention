@@ -4,7 +4,8 @@
     "name": "punktde/editconflictprevention",
     "license": "MIT",
     "require": {
-        "neos/neos": ">4.1"
+        "neos/neos": ">4.1",
+        "neos/neos-ui": "*"
     },
     "autoload": {
         "psr-4": {

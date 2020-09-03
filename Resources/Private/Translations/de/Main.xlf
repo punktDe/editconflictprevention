@@ -53,67 +53,55 @@
                 <source>just now</source>
                 <target>eben gerade</target>
             </trans-unit>
-
-            <group id="timespan.minutes" restype="x-gettext-plurals">
-                <trans-unit id="timespan.minutes[0]">
-                    <source>just now</source>
-                    <target>eben gerade</target>
-                </trans-unit>
-                <trans-unit id="timespan.minutes[1]">
-                    <source>{count} minutes ago</source>
-                    <target>vor {count} Minuten</target>
-                </trans-unit>
-            </group>
-            <group id="timespan.hours" restype="x-gettext-plurals">
-                <trans-unit id="timespan.hours[0]">
-                    <source>1 hour ago</source>
-                    <target>vor einer Stunde</target>
-                </trans-unit>
-                <trans-unit id="timespan.hours[1]">
-                    <source>{count} hours ago</source>
-                    <target>vor {count} Stunden</target>
-                </trans-unit>
-            </group>
-            <group id="timespan.days" restype="x-gettext-plurals">
-                <trans-unit id="timespan.days[0]">
-                    <source>yesterday</source>
-                    <target>gestern</target>
-                </trans-unit>
-                <trans-unit id="timespan.days[1]">
-                    <source>{count} days ago</source>
-                    <target>vor {count} Tagen</target>
-                </trans-unit>
-            </group>
-            <group id="timespan.weeks" restype="x-gettext-plurals">
-                <trans-unit id="timespan.weeks[0]">
-                    <source>last week</source>
-                    <target>letzte Woche</target>
-                </trans-unit>
-                <trans-unit id="timespan.weeks[1]">
-                    <source>{count} weeks ago</source>
-                    <target>vor {count} Wochen</target>
-                </trans-unit>
-            </group>
-            <group id="timespan.months" restype="x-gettext-plurals">
-                <trans-unit id="timespan.months[0]">
-                    <source>last month</source>
-                    <target>vor einem Monat</target>
-                </trans-unit>
-                <trans-unit id="timespan.months[1]">
-                    <source>{count} months ago</source>
-                    <target>vor {count} Monaten</target>
-                </trans-unit>
-            </group>
-            <group id="timespan.years" restype="x-gettext-plurals">
-                <trans-unit id="timespan.years[0]">
-                    <source>last year</source>
-                    <target>letztes Jahr</target>
-                </trans-unit>
-                <trans-unit id="timespan.years[1]">
-                    <source>{count} years ago</source>
-                    <target>vor {count} Jahren</target>
-                </trans-unit>
-            </group>
+            
+            <trans-unit id="timespan.minutes.0">
+                <source>just now</source>
+                <target>eben gerade</target>
+            </trans-unit>
+            <trans-unit id="timespan.minutes.1">
+                <source>{count} minutes ago</source>
+                <target>vor {count} Minuten</target>
+            </trans-unit>
+            <trans-unit id="timespan.hours.0">
+                <source>1 hour ago</source>
+                <target>vor einer Stunde</target>
+            </trans-unit>
+            <trans-unit id="timespan.hours.1">
+                <source>{count} hours ago</source>
+                <target>vor {count} Stunden</target>
+            </trans-unit>
+            <trans-unit id="timespan.days.0">
+                <source>yesterday</source>
+                <target>gestern</target>
+            </trans-unit>
+            <trans-unit id="timespan.days.1">
+                <source>{count} days ago</source>
+                <target>vor {count} Tagen</target>
+            </trans-unit>
+            <trans-unit id="timespan.weeks.0">
+                <source>last week</source>
+                <target>letzte Woche</target>
+            </trans-unit>
+            <trans-unit id="timespan.weeks.1">
+                <source>{count} weeks ago</source>
+                <target>vor {count} Wochen</target>
+            </trans-unit>
+            <trans-unit id="timespan.months.0">
+                <source>last month</source>
+                <target>vor einem Monat</target>
+            </trans-unit>
+            <trans-unit id="timespan.months.1">
+                <source>{count} months ago</source>
+                <target>vor {count} Monaten</target>
+            </trans-unit>
+            <trans-unit id="timespan.years.0">
+                <source>last year</source>
+                <target>letztes Jahr</target>
+            </trans-unit>
+            <trans-unit id="timespan.years.1">
+                <source>{count} years ago</source>
+                <target>vor {count} Jahren</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
