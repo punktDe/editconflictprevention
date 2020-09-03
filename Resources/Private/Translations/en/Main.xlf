@@ -3,7 +3,7 @@
     <file product-name="PunktDe.EditConflictPrevention" source-language="en" datatype="plaintext">
         <body>
             <trans-unit id="button.label" xml:space="preserve">
-                <source>This page has unpublished changes. Click here for more information. </source>
+                <source>This page has changes in other workspaces. Click here for more information. </source>
             </trans-unit>
 
             <trans-unit id="modal.title" xml:space="preserve">
