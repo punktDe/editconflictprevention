@@ -16,6 +16,7 @@ use Neos\Flow\Mvc\Controller\ActionController;
 use Neos\Flow\Mvc\View\JsonView;
 use Neos\Flow\Persistence\Exception\IllegalObjectTypeException;
 use Neos\Neos\Controller\CreateContentContextTrait;
+use Neos\Neos\Ui\ContentRepository\Service\NodeService;
 use PunktDe\EditConflictPrevention\Domain\ChangedNodesCalculator;
 use PunktDe\EditConflictPrevention\Domain\Dto\ChangedNode;
 
@@ -42,24 +43,31 @@ class ChangedNodesApiController extends ActionController
     protected $changedNodesCalculator;
 
     /**
-     * @param string $nodePath
-     * @throws IllegalObjectTypeException
+     * @var NodeService
+     * @Flow\Inject
      */
-    public function nodeHasChangesAction(string $nodePath)
+    protected $nodeService;
+
+    /**
+     * @param string $nodePath
+     */
+    public function nodeHasChangesAction(string $nodePath): void
     {
-        $this->view->assign('value', $this->changedNodesCalculator->documentHasChangesInOtherWorkspace($this->getNodeInterfaceFromPath($nodePath)));
+        $this->view->assign(
+            'value',
+            $this->changedNodesCalculator->documentHasChangesInOtherWorkspace($this->nodeService->getNodeFromContextPath($nodePath))
+        );
     }
 
     /**
      * @param string $nodePath
-     * @throws IllegalObjectTypeException
      * @throws IndexOutOfBoundsException
      * @throws InvalidFormatPlaceholderException
      * @throws NodeConfigurationException
      */
-    public function getChangedNodesAction(string $nodePath)
+    public function getChangedNodesAction(string $nodePath): void
     {
-        $documentNode = $this->getNodeInterfaceFromPath($nodePath);
+        $documentNode = $this->nodeService->getNodeFromContextPath($nodePath);
         $changedNodes = $this->changedNodesCalculator->calculateChangesForDocument($documentNode);
         $result = [];
 
@@ -68,17 +76,6 @@ class ChangedNodesApiController extends ActionController
         }
 
         $this->view->assign('value', json_encode($result));
-    }
-
-    /**
-     * @param string $nodePath
-     * @return NodeInterface|null
-     * @throws IllegalObjectTypeException
-     */
-    protected function getNodeInterfaceFromPath(string $nodePath): ?NodeInterface
-    {
-        $context = $this->createContentContext('live');
-        return new Node($this->nodeDataRepository->findOneByPath(explode('@', $nodePath)[0], $context->getWorkspace('live')), $context);
     }
 
     /**
