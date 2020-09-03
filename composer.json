@@ -1,9 +1,10 @@
 {
-    "description": "Prevents edit conflict when multiple editors are working on the site by either warn the user or deny editing.",
+    "description": "Prevents edit conflicts when multiple editors are working on the site by either warn the user or deny editing.",
     "type": "neos-package",
     "name": "punktde/editconflictprevention",
+    "license": "MIT",
     "require": {
-        "neos/neos": "*"
+        "neos/neos": ">4.1"
     },
     "autoload": {
         "psr-4": {
