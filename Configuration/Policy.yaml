@@ -12,16 +12,14 @@ privilegeTargets:
       matcher: 'hasChangesInOtherWorkspaces()'
 
 roles:
-#  'Neos.Flow:Everybody':
-#    privileges:
   'Neos.Neos:AbstractEditor':
     privileges:
       -
         privilegeTarget: 'PunktDe.EditConflictPrevention.Api'
         permission: GRANT
-      -
-        privilegeTarget: 'PunktDe.EditConflictPrevention.EditNodeWithChangesInOtherWorkspaces'
-        permission: DENY
-      -
-        privilegeTarget: 'PunktDe.EditConflictPrevention.EditNodePropertiesWithChangesInOtherWorkspaces'
-        permission: DENY
+#      -
+#        privilegeTarget: 'PunktDe.EditConflictPrevention.EditNodeWithChangesInOtherWorkspaces'
+#        permission: DENY
+#      -
+#        privilegeTarget: 'PunktDe.EditConflictPrevention.EditNodePropertiesWithChangesInOtherWorkspaces'
+#        permission: DENY
