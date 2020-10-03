@@ -31,7 +31,7 @@
                 <source>Workspace</source>
                 <target>Workspace</target>
             </trans-unit>
-            <trans-unit id="modal.button.close.caption" xml:space="preserver">
+            <trans-unit id="modal.button.close.caption" xml:space="preserve">
                 <source>Close</source>
                 <target>Schließen</target>
             </trans-unit>
