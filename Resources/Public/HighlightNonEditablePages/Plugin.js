@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -130,11 +130,11 @@ exports.reducer = exports.actions = exports.actionTypes = undefined;
 
 var _handleActions;
 
-var _reduxActions = __webpack_require__(16);
+var _reduxActions = __webpack_require__(17);
 
 var _plowJs = __webpack_require__(2);
 
-var _utilsRedux = __webpack_require__(17);
+var _utilsRedux = __webpack_require__(18);
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -173,10 +173,25 @@ var _readFromConsumerApi2 = _interopRequireDefault(_readFromConsumerApi);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-module.exports = (0, _readFromConsumerApi2.default)('vendor')().reactRedux;
+module.exports = (0, _readFromConsumerApi2.default)('NeosProjectPackages')().NeosUiI18n;
 
 /***/ }),
 /* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _readFromConsumerApi = __webpack_require__(0);
+
+var _readFromConsumerApi2 = _interopRequireDefault(_readFromConsumerApi);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = (0, _readFromConsumerApi2.default)('vendor')().reactRedux;
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -200,7 +215,7 @@ var fetchWithErrorHandling = (0, _readFromConsumerApi2.default)('NeosProjectPack
 exports.fetchWithErrorHandling = fetchWithErrorHandling;
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -215,7 +230,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 module.exports = (0, _readFromConsumerApi2.default)('NeosProjectPackages')().ReactUiComponents;
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -230,13 +245,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 module.exports = (0, _readFromConsumerApi2.default)('vendor')().PropTypes;
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(19);
+var content = __webpack_require__(20);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -244,7 +259,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(21)(content, options);
+var update = __webpack_require__(22)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -261,28 +276,28 @@ if(false) {
 }
 
 /***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-__webpack_require__(10);
-
-/***/ }),
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _neosUiExtensibility = __webpack_require__(11);
+__webpack_require__(11);
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _neosUiExtensibility = __webpack_require__(12);
 
 var _neosUiExtensibility2 = _interopRequireDefault(_neosUiExtensibility);
 
-var _PageHasEditsButton = __webpack_require__(15);
+var _PageHasEditsButton = __webpack_require__(16);
 
-var _PageEditsOverviewModal = __webpack_require__(18);
+var _PageEditsOverviewModal = __webpack_require__(19);
 
 var _redux = __webpack_require__(3);
 
@@ -292,14 +307,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     var reducersRegistry = globalRegistry.get('reducers');
     reducersRegistry.set('punktde/editconflictprevention', { reducer: _redux.reducer });
 
-    console.log(globalRegistry.get('i18n'));
     var containerRegistry = globalRegistry.get('containers');
     containerRegistry.set('SecondaryToolbar/Right/NonEditableContent', (0, _PageHasEditsButton.PageHasEditsButton)());
     containerRegistry.set('Modals/PageHasEditsModal', (0, _PageEditsOverviewModal.PageEditsOverviewModal)());
 });
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -310,7 +324,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.createConsumerApi = undefined;
 
-var _createConsumerApi = __webpack_require__(12);
+var _createConsumerApi = __webpack_require__(13);
 
 var _createConsumerApi2 = _interopRequireDefault(_createConsumerApi);
 
@@ -324,7 +338,7 @@ exports.default = (0, _readFromConsumerApi2.default)('manifest');
 exports.createConsumerApi = _createConsumerApi2.default;
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -335,9 +349,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = createConsumerApi;
 
-var _package = __webpack_require__(13);
+var _package = __webpack_require__(14);
 
-var _manifest = __webpack_require__(14);
+var _manifest = __webpack_require__(15);
 
 var _manifest2 = _interopRequireDefault(_manifest);
 
@@ -366,13 +380,13 @@ function createConsumerApi(manifests, exposureMap) {
 }
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports) {
 
-module.exports = {"_from":"@neos-project/neos-ui-extensibility@~1.0.14","_id":"@neos-project/neos-ui-extensibility@1.0.14","_inBundle":false,"_integrity":"sha512-G1C+ZkYjTGST3E1vfgolygcBqKn7XphMoLZTcz5ddh/Phabo23N+54zwi1mLYjAtefuIY/go0t1NQeDyIexmRg==","_location":"/@neos-project/neos-ui-extensibility","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"@neos-project/neos-ui-extensibility@~1.0.14","name":"@neos-project/neos-ui-extensibility","escapedName":"@neos-project%2fneos-ui-extensibility","scope":"@neos-project","rawSpec":"~1.0.14","saveSpec":null,"fetchSpec":"~1.0.14"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/@neos-project/neos-ui-extensibility/-/neos-ui-extensibility-1.0.14.tgz","_shasum":"3b65432e8c8ceef014861061e0213a1b75a05ba0","_spec":"@neos-project/neos-ui-extensibility@~1.0.14","_where":"/Users/ry81/Workspace/Projects/cgm-app/DistributionPackages/PunktDe.EditConflictPrevention/Resources/Private/JavaScript/HighlightNonEditablePages","bin":{"neos-react-scripts":"bin/neos-react-scripts.js"},"bundleDependencies":false,"dependencies":{"@neos-project/build-essentials":"1.0.14","@neos-project/positional-array-sorter":"1.0.14","babel-core":"^6.13.2","babel-eslint":"^7.1.1","babel-loader":"^7.1.2","babel-plugin-transform-decorators-legacy":"^1.3.4","babel-plugin-transform-object-rest-spread":"^6.20.1","babel-plugin-webpack-alias":"^2.1.1","babel-preset-es2015":"^6.13.2","babel-preset-react":"^6.3.13","babel-preset-stage-0":"^6.3.13","chalk":"^1.1.3","css-loader":"^0.28.4","file-loader":"^1.1.5","json-loader":"^0.5.4","postcss-loader":"^2.0.10","react-dev-utils":"^0.5.0","style-loader":"^0.19.0"},"deprecated":false,"description":"Extensibility mechanisms for the Neos CMS UI","devDependencies":{"@neos-project/babel-preset-neos-ui":"1.0.14","@neos-project/jest-preset-neos-ui":"1.0.14"},"jest":{"preset":"@neos-project/jest-preset-neos-ui"},"main":"./src/index.js","name":"@neos-project/neos-ui-extensibility","scripts":{"build":"exit 0","build:watch":"exit 0","clean":"rimraf ./lib ./dist","jest":"NODE_ENV=test jest","lint":"eslint src","prebuild":"check-dependencies && yarn clean","test":"yarn jest -- -w 2 --coverage","test:watch":"yarn jest -- --watch"},"version":"1.0.14"}
+module.exports = {"_args":[["@neos-project/neos-ui-extensibility@1.0.14","/Users/ry81/Workspace/Projects/cgm-app/DistributionPackages/editconflictprevention/Resources/Private/JavaScript/HighlightNonEditablePages"]],"_development":true,"_from":"@neos-project/neos-ui-extensibility@1.0.14","_id":"@neos-project/neos-ui-extensibility@1.0.14","_inBundle":false,"_integrity":"sha512-G1C+ZkYjTGST3E1vfgolygcBqKn7XphMoLZTcz5ddh/Phabo23N+54zwi1mLYjAtefuIY/go0t1NQeDyIexmRg==","_location":"/@neos-project/neos-ui-extensibility","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"@neos-project/neos-ui-extensibility@1.0.14","name":"@neos-project/neos-ui-extensibility","escapedName":"@neos-project%2fneos-ui-extensibility","scope":"@neos-project","rawSpec":"1.0.14","saveSpec":null,"fetchSpec":"1.0.14"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/@neos-project/neos-ui-extensibility/-/neos-ui-extensibility-1.0.14.tgz","_spec":"1.0.14","_where":"/Users/ry81/Workspace/Projects/cgm-app/DistributionPackages/editconflictprevention/Resources/Private/JavaScript/HighlightNonEditablePages","bin":{"neos-react-scripts":"bin/neos-react-scripts.js"},"dependencies":{"@neos-project/build-essentials":"1.0.14","@neos-project/positional-array-sorter":"1.0.14","babel-core":"^6.13.2","babel-eslint":"^7.1.1","babel-loader":"^7.1.2","babel-plugin-transform-decorators-legacy":"^1.3.4","babel-plugin-transform-object-rest-spread":"^6.20.1","babel-plugin-webpack-alias":"^2.1.1","babel-preset-es2015":"^6.13.2","babel-preset-react":"^6.3.13","babel-preset-stage-0":"^6.3.13","chalk":"^1.1.3","css-loader":"^0.28.4","file-loader":"^1.1.5","json-loader":"^0.5.4","postcss-loader":"^2.0.10","react-dev-utils":"^0.5.0","style-loader":"^0.19.0"},"description":"Extensibility mechanisms for the Neos CMS UI","devDependencies":{"@neos-project/babel-preset-neos-ui":"1.0.14","@neos-project/jest-preset-neos-ui":"1.0.14"},"jest":{"preset":"@neos-project/jest-preset-neos-ui"},"main":"./src/index.js","name":"@neos-project/neos-ui-extensibility","scripts":{"build":"exit 0","build:watch":"exit 0","clean":"rimraf ./lib ./dist","jest":"NODE_ENV=test jest","lint":"eslint src","prebuild":"check-dependencies && yarn clean","test":"yarn jest -- -w 2 --coverage","test:watch":"yarn jest -- --watch"},"version":"1.0.14"}
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -394,7 +408,7 @@ exports.default = function (manifests) {
 };
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -411,21 +425,21 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(4);
+var _reactRedux = __webpack_require__(5);
 
 var _plowJs = __webpack_require__(2);
 
-var _neosUiBackendConnector = __webpack_require__(5);
+var _neosUiBackendConnector = __webpack_require__(6);
 
-var _reactUiComponents = __webpack_require__(6);
+var _reactUiComponents = __webpack_require__(7);
 
-var _propTypes = __webpack_require__(7);
+var _propTypes = __webpack_require__(8);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _redux = __webpack_require__(3);
 
-var _neosUiI18n = __webpack_require__(24);
+var _neosUiI18n = __webpack_require__(4);
 
 var _neosUiI18n2 = _interopRequireDefault(_neosUiI18n);
 
@@ -506,7 +520,7 @@ var PageHasEditsButton = exports.PageHasEditsButton = function PageHasEditsButto
 };
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -521,7 +535,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 module.exports = (0, _readFromConsumerApi2.default)('vendor')().reduxActions;
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -536,7 +550,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 module.exports = (0, _readFromConsumerApi2.default)('NeosProjectPackages')().UtilsRedux;
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -553,27 +567,27 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactUiComponents = __webpack_require__(6);
+var _reactUiComponents = __webpack_require__(7);
 
-var _propTypes = __webpack_require__(7);
+var _propTypes = __webpack_require__(8);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _plowJs = __webpack_require__(2);
 
-var _reactRedux = __webpack_require__(4);
+var _reactRedux = __webpack_require__(5);
 
 var _redux = __webpack_require__(3);
 
-var _neosUiBackendConnector = __webpack_require__(5);
+var _neosUiBackendConnector = __webpack_require__(6);
 
-var _style = __webpack_require__(8);
+var _style = __webpack_require__(9);
 
 var _style2 = _interopRequireDefault(_style);
 
-var _ChangeTableRow = __webpack_require__(23);
+var _ChangeTableRow = __webpack_require__(24);
 
-var _neosUiI18n = __webpack_require__(24);
+var _neosUiI18n = __webpack_require__(4);
 
 var _neosUiI18n2 = _interopRequireDefault(_neosUiI18n);
 
@@ -606,8 +620,8 @@ var PageEditsOverviewModal = exports.PageEditsOverviewModal = function PageEdits
         }
 
         _createClass(PageEditsOverviewModal, [{
-            key: 'componentDidMount',
-            value: function componentDidMount() {
+            key: 'updateChanges',
+            value: function updateChanges() {
                 var _this2 = this;
 
                 var documentNodePath = this.props.documentNodePath;
@@ -629,6 +643,15 @@ var PageEditsOverviewModal = exports.PageEditsOverviewModal = function PageEdits
                 });
             }
         }, {
+            key: 'shouldComponentUpdate',
+            value: function shouldComponentUpdate(nextProps, nextState, nextContext) {
+                if (this.updateNextTick) {
+                    this.updateNextTick = false;
+                    return true;
+                }
+                return this.props.isOpen !== nextProps.isOpen;
+            }
+        }, {
             key: 'renderCloseAction',
             value: function renderCloseAction() {
                 var _this3 = this;
@@ -648,10 +671,20 @@ var PageEditsOverviewModal = exports.PageEditsOverviewModal = function PageEdits
                 );
             }
         }, {
+            key: 'componentDidUpdate',
+            value: function componentDidUpdate(prevProps, prevState, snapshot) {
+                this.updateChanges();
+                this.updateNextTick = true;
+            }
+        }, {
+            key: 'componentDidMount',
+            value: function componentDidMount() {
+                this.updateChanges();
+            }
+        }, {
             key: 'renderConflictsHint',
             value: function renderConflictsHint() {
                 var isOpen = this.props.isOpen;
-
 
                 return isOpen ? _react2.default.createElement(
                     'div',
@@ -734,10 +767,10 @@ var PageEditsOverviewModal = exports.PageEditsOverviewModal = function PageEdits
 };
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(20)(false);
+exports = module.exports = __webpack_require__(21)(false);
 // imports
 
 
@@ -754,7 +787,7 @@ exports.locals = {
 };
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports) {
 
 /*
@@ -836,7 +869,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -892,7 +925,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(22);
+var	fixUrls = __webpack_require__(23);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -1208,7 +1241,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports) {
 
 
@@ -1303,7 +1336,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1320,11 +1353,11 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _style = __webpack_require__(8);
+var _style = __webpack_require__(9);
 
 var _style2 = _interopRequireDefault(_style);
 
-var _neosUiI18n = __webpack_require__(24);
+var _neosUiI18n = __webpack_require__(4);
 
 var _neosUiI18n2 = _interopRequireDefault(_neosUiI18n);
 
@@ -1436,21 +1469,6 @@ var ChangeTableRow = exports.ChangeTableRow = function (_PureComponent) {
 
     return ChangeTableRow;
 }(_react.PureComponent);
-
-/***/ }),
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _readFromConsumerApi = __webpack_require__(0);
-
-var _readFromConsumerApi2 = _interopRequireDefault(_readFromConsumerApi);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = (0, _readFromConsumerApi2.default)('NeosProjectPackages')().NeosUiI18n;
 
 /***/ })
 /******/ ]);

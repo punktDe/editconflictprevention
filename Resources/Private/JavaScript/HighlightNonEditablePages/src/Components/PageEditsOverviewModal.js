@@ -31,7 +31,7 @@ export const PageEditsOverviewModal = () => {
             }
         }
 
-        componentDidMount() {
+        updateChanges() {
             const {documentNodePath} = this.props;
             fetchWithErrorHandling.withCsrfToken(csrfToken => ({
                 url: `/editconflictprevention/api/getchangednodes?nodePath=${documentNodePath.documentNode}`,
@@ -48,6 +48,14 @@ export const PageEditsOverviewModal = () => {
                 });
         }
 
+        shouldComponentUpdate(nextProps, nextState, nextContext) {
+            if (this.updateNextTick) {
+                this.updateNextTick = false;
+                return true;
+            }
+            return this.props.isOpen !== nextProps.isOpen;
+        }
+
         renderCloseAction() {
             return (
                 <Button
@@ -60,9 +68,17 @@ export const PageEditsOverviewModal = () => {
             );
         }
 
+        componentDidUpdate(prevProps, prevState, snapshot) {
+            this.updateChanges();
+            this.updateNextTick = true;
+        }
+
+        componentDidMount() {
+            this.updateChanges();
+        }
+
         renderConflictsHint() {
             const {isOpen} = this.props;
-
             return isOpen ? (
                 <div className={styles.editconflictHint}>
                     <div><I18n id="PunktDe.EditConflictPrevention:Main:modal.hint"/></div>
@@ -83,7 +99,7 @@ export const PageEditsOverviewModal = () => {
                         })}
                     </table>
                 </div>
-            ) : '';
+            ): '';
         }
 
         render() {
