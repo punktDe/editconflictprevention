@@ -93,13 +93,48 @@ function readFromConsumerApi(key) {
 "use strict";
 
 
-var _readFromConsumerApi = __webpack_require__(0);
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.reducer = exports.actions = exports.actionTypes = undefined;
 
-var _readFromConsumerApi2 = _interopRequireDefault(_readFromConsumerApi);
+var _handleActions;
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _reduxActions = __webpack_require__(17);
 
-module.exports = (0, _readFromConsumerApi2.default)('vendor')().React;
+var _plowJs = __webpack_require__(3);
+
+var _utilsRedux = __webpack_require__(18);
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var OPEN_DIALOG = '@PunktDe.EditConflictPrevention/OPEN_DIALOG';
+var CLOSE_DIALOG = '@PunktDe.EditConflictPrevention/CLOSE_DIALOG';
+var SET_CHANGES = '@PunktDe.EditConflictPrevention/SET_CHANGES';
+
+var actionTypes = exports.actionTypes = {
+    OPEN_DIALOG: OPEN_DIALOG,
+    CLOSE_DIALOG: CLOSE_DIALOG,
+    SET_CHANGES: SET_CHANGES
+};
+
+var openDialog = (0, _reduxActions.createAction)(OPEN_DIALOG);
+var closeDialog = (0, _reduxActions.createAction)(CLOSE_DIALOG);
+var setChanges = (0, _reduxActions.createAction)(SET_CHANGES);
+
+var actions = exports.actions = {
+    openDialog: openDialog,
+    closeDialog: closeDialog,
+    setChanges: setChanges
+};
+
+var reducer = exports.reducer = (0, _utilsRedux.handleActions)((_handleActions = {}, _defineProperty(_handleActions, OPEN_DIALOG, function () {
+    return (0, _plowJs.$set)('plugins.pageEditsOverviewModal.isOpen', true);
+}), _defineProperty(_handleActions, CLOSE_DIALOG, function () {
+    return (0, _plowJs.$set)('plugins.pageEditsOverviewModal.isOpen', false);
+}), _defineProperty(_handleActions, SET_CHANGES, function (changes) {
+    return (0, _plowJs.$set)('plugins.pageEditsOverviewModal.changes', changes);
+}), _handleActions));
 
 /***/ }),
 /* 2 */
@@ -114,7 +149,7 @@ var _readFromConsumerApi2 = _interopRequireDefault(_readFromConsumerApi);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-module.exports = (0, _readFromConsumerApi2.default)('vendor')().plow;
+module.exports = (0, _readFromConsumerApi2.default)('vendor')().React;
 
 /***/ }),
 /* 3 */
@@ -123,42 +158,13 @@ module.exports = (0, _readFromConsumerApi2.default)('vendor')().plow;
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.reducer = exports.actions = exports.actionTypes = undefined;
+var _readFromConsumerApi = __webpack_require__(0);
 
-var _handleActions;
+var _readFromConsumerApi2 = _interopRequireDefault(_readFromConsumerApi);
 
-var _reduxActions = __webpack_require__(17);
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _plowJs = __webpack_require__(2);
-
-var _utilsRedux = __webpack_require__(18);
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var OPEN_DIALOG = '@PunktDe.EditConflictPrevention/OPEN_DIALOG';
-var CLOSE_DIALOG = '@PunktDe.EditConflictPrevention/CLOSE_DIALOG';
-
-var actionTypes = exports.actionTypes = {
-    OPEN_DIALOG: OPEN_DIALOG,
-    CLOSE_DIALOG: CLOSE_DIALOG
-};
-
-var openDialog = (0, _reduxActions.createAction)(OPEN_DIALOG);
-var closeDialog = (0, _reduxActions.createAction)(CLOSE_DIALOG);
-
-var actions = exports.actions = {
-    openDialog: openDialog,
-    closeDialog: closeDialog
-};
-
-var reducer = exports.reducer = (0, _utilsRedux.handleActions)((_handleActions = {}, _defineProperty(_handleActions, OPEN_DIALOG, function () {
-    return (0, _plowJs.$set)('ui.pageEditsOverviewModal.isOpen', true);
-}), _defineProperty(_handleActions, CLOSE_DIALOG, function () {
-    return (0, _plowJs.$set)('ui.pageEditsOverviewModal.isOpen', false);
-}), _handleActions));
+module.exports = (0, _readFromConsumerApi2.default)('vendor')().plow;
 
 /***/ }),
 /* 4 */
@@ -197,22 +203,13 @@ module.exports = (0, _readFromConsumerApi2.default)('vendor')().reactRedux;
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.fetchWithErrorHandling = undefined;
-
 var _readFromConsumerApi = __webpack_require__(0);
 
 var _readFromConsumerApi2 = _interopRequireDefault(_readFromConsumerApi);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = (0, _readFromConsumerApi2.default)('NeosProjectPackages')().NeosUiBackendConnectorDefault;
-
-
-var fetchWithErrorHandling = (0, _readFromConsumerApi2.default)('NeosProjectPackages')().NeosUiBackendConnector.fetchWithErrorHandling;
-exports.fetchWithErrorHandling = fetchWithErrorHandling;
+module.exports = (0, _readFromConsumerApi2.default)('NeosProjectPackages')().ReactUiComponents;
 
 /***/ }),
 /* 7 */
@@ -227,25 +224,10 @@ var _readFromConsumerApi2 = _interopRequireDefault(_readFromConsumerApi);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-module.exports = (0, _readFromConsumerApi2.default)('NeosProjectPackages')().ReactUiComponents;
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _readFromConsumerApi = __webpack_require__(0);
-
-var _readFromConsumerApi2 = _interopRequireDefault(_readFromConsumerApi);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 module.exports = (0, _readFromConsumerApi2.default)('vendor')().PropTypes;
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -276,6 +258,21 @@ if(false) {
 }
 
 /***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _readFromConsumerApi = __webpack_require__(0);
+
+var _readFromConsumerApi2 = _interopRequireDefault(_readFromConsumerApi);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = (0, _readFromConsumerApi2.default)('NeosProjectPackages')().NeosUiReduxStore;
+
+/***/ }),
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -299,11 +296,18 @@ var _PageHasEditsButton = __webpack_require__(16);
 
 var _PageEditsOverviewModal = __webpack_require__(19);
 
-var _redux = __webpack_require__(3);
+var _redux = __webpack_require__(1);
+
+var _sagas = __webpack_require__(25);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _neosUiExtensibility2.default)('PunktDe.EditConflictPrevention:HighlightNonEditablePage', {}, function (globalRegistry) {
+    var sagasRegistry = globalRegistry.get('sagas');
+    sagasRegistry.set('punktde/editconflictprevention/nodeHasChanges', {
+        saga: _sagas.watchGetNodeChanges
+    });
+
     var reducersRegistry = globalRegistry.get('reducers');
     reducersRegistry.set('punktde/editconflictprevention', { reducer: _redux.reducer });
 
@@ -421,23 +425,21 @@ exports.PageHasEditsButton = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(1);
+var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(5);
 
-var _plowJs = __webpack_require__(2);
+var _plowJs = __webpack_require__(3);
 
-var _neosUiBackendConnector = __webpack_require__(6);
+var _reactUiComponents = __webpack_require__(6);
 
-var _reactUiComponents = __webpack_require__(7);
-
-var _propTypes = __webpack_require__(8);
+var _propTypes = __webpack_require__(7);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _redux = __webpack_require__(3);
+var _redux = __webpack_require__(1);
 
 var _neosUiI18n = __webpack_require__(4);
 
@@ -455,49 +457,24 @@ var PageHasEditsButton = exports.PageHasEditsButton = function PageHasEditsButto
     var _dec, _class, _class2, _temp;
 
     return _dec = (0, _reactRedux.connect)((0, _plowJs.$transform)({
-        documentNodePath: (0, _plowJs.$get)('cr.nodes'), // Only works with Neos UI 2+
-        isOpen: (0, _plowJs.$get)('ui.pageEditsOverviewModal.isOpen')
+        changes: (0, _plowJs.$get)('plugins.pageEditsOverviewModal.changes')
     }), { open: _redux.actions.openDialog }), _dec(_class = (_temp = _class2 = function (_PureComponent) {
         _inherits(PageHasEditsButton, _PureComponent);
 
-        function PageHasEditsButton(props) {
+        function PageHasEditsButton() {
             _classCallCheck(this, PageHasEditsButton);
 
-            var _this = _possibleConstructorReturn(this, (PageHasEditsButton.__proto__ || Object.getPrototypeOf(PageHasEditsButton)).call(this, props));
-
-            _this.state = {
-                hasNonEditableContent: false
-            };
-            return _this;
+            return _possibleConstructorReturn(this, (PageHasEditsButton.__proto__ || Object.getPrototypeOf(PageHasEditsButton)).apply(this, arguments));
         }
 
         _createClass(PageHasEditsButton, [{
             key: 'render',
             value: function render() {
-                var _this2 = this;
-
                 var _props = this.props,
                     open = _props.open,
-                    documentNodePath = _props.documentNodePath;
+                    changes = _props.changes;
 
-
-                _neosUiBackendConnector.fetchWithErrorHandling.withCsrfToken(function (csrfToken) {
-                    return {
-                        url: '/editconflictprevention/api/nodehaschanges?nodePath=' + documentNodePath.documentNode,
-                        method: 'GET',
-                        credentials: 'include',
-                        headers: {
-                            'X-Flow-Csrftoken': csrfToken,
-                            'Content-Type': 'text/html'
-                        }
-                    };
-                }).then(function (result) {
-                    return result.json();
-                }).then(function (json) {
-                    _this2.setState({ hasNonEditableContent: json });
-                });
-
-                return this.state.hasNonEditableContent ? _react2.default.createElement(
+                return changes !== undefined && changes.length > 0 ? _react2.default.createElement(
                     _reactUiComponents.Button,
                     {
                         style: 'error',
@@ -515,7 +492,7 @@ var PageHasEditsButton = exports.PageHasEditsButton = function PageHasEditsButto
 
         return PageHasEditsButton;
     }(_react.PureComponent), _class2.propTypes = {
-        isOpen: _propTypes2.default.bool
+        changes: _propTypes2.default.array.isRequired
     }, _temp)) || _class;
 };
 
@@ -563,25 +540,23 @@ exports.PageEditsOverviewModal = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(1);
+var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactUiComponents = __webpack_require__(7);
+var _reactUiComponents = __webpack_require__(6);
 
-var _propTypes = __webpack_require__(8);
+var _propTypes = __webpack_require__(7);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _plowJs = __webpack_require__(2);
+var _plowJs = __webpack_require__(3);
 
 var _reactRedux = __webpack_require__(5);
 
-var _redux = __webpack_require__(3);
+var _redux = __webpack_require__(1);
 
-var _neosUiBackendConnector = __webpack_require__(6);
-
-var _style = __webpack_require__(9);
+var _style = __webpack_require__(8);
 
 var _style2 = _interopRequireDefault(_style);
 
@@ -603,58 +578,21 @@ var PageEditsOverviewModal = exports.PageEditsOverviewModal = function PageEdits
     var _dec, _class, _class2, _temp;
 
     return _dec = (0, _reactRedux.connect)((0, _plowJs.$transform)({
-        isOpen: (0, _plowJs.$get)('ui.pageEditsOverviewModal.isOpen'),
-        documentNodePath: (0, _plowJs.$get)('cr.nodes') // Only works with Neos UI 2+
+        isOpen: (0, _plowJs.$get)('plugins.pageEditsOverviewModal.isOpen'),
+        changes: (0, _plowJs.$get)('plugins.pageEditsOverviewModal.changes')
     }), { close: _redux.actions.closeDialog }), _dec(_class = (_temp = _class2 = function (_PureComponent) {
         _inherits(PageEditsOverviewModal, _PureComponent);
 
-        function PageEditsOverviewModal(props) {
+        function PageEditsOverviewModal() {
             _classCallCheck(this, PageEditsOverviewModal);
 
-            var _this = _possibleConstructorReturn(this, (PageEditsOverviewModal.__proto__ || Object.getPrototypeOf(PageEditsOverviewModal)).call(this, props));
-
-            _this.state = {
-                changedNodes: []
-            };
-            return _this;
+            return _possibleConstructorReturn(this, (PageEditsOverviewModal.__proto__ || Object.getPrototypeOf(PageEditsOverviewModal)).apply(this, arguments));
         }
 
         _createClass(PageEditsOverviewModal, [{
-            key: 'updateChanges',
-            value: function updateChanges() {
-                var _this2 = this;
-
-                var documentNodePath = this.props.documentNodePath;
-
-                _neosUiBackendConnector.fetchWithErrorHandling.withCsrfToken(function (csrfToken) {
-                    return {
-                        url: '/editconflictprevention/api/getchangednodes?nodePath=' + documentNodePath.documentNode,
-                        method: 'GET',
-                        credentials: 'include',
-                        headers: {
-                            'X-Flow-Csrftoken': csrfToken,
-                            'Content-Type': 'application/json'
-                        }
-                    };
-                }).then(function (result) {
-                    return result.json();
-                }).then(function (json) {
-                    _this2.setState({ changedNodes: JSON.parse(json) });
-                });
-            }
-        }, {
-            key: 'shouldComponentUpdate',
-            value: function shouldComponentUpdate(nextProps, nextState, nextContext) {
-                if (this.updateNextTick) {
-                    this.updateNextTick = false;
-                    return true;
-                }
-                return this.props.isOpen !== nextProps.isOpen;
-            }
-        }, {
             key: 'renderCloseAction',
             value: function renderCloseAction() {
-                var _this3 = this;
+                var _this2 = this;
 
                 return _react2.default.createElement(
                     _reactUiComponents.Button,
@@ -664,29 +602,20 @@ var PageEditsOverviewModal = exports.PageEditsOverviewModal = function PageEdits
                         style: 'lighter',
                         hoverStyle: 'brand',
                         onClick: function onClick() {
-                            return _this3.props.close();
+                            return _this2.props.close();
                         }
                     },
                     _react2.default.createElement(_neosUiI18n2.default, { id: 'PunktDe.EditConflictPrevention:Main:modal.button.close.caption' })
                 );
             }
         }, {
-            key: 'componentDidUpdate',
-            value: function componentDidUpdate(prevProps, prevState, snapshot) {
-                this.updateChanges();
-                this.updateNextTick = true;
-            }
-        }, {
-            key: 'componentDidMount',
-            value: function componentDidMount() {
-                this.updateChanges();
-            }
-        }, {
             key: 'renderConflictsHint',
             value: function renderConflictsHint() {
-                var isOpen = this.props.isOpen;
+                var _props = this.props,
+                    isOpen = _props.isOpen,
+                    changes = _props.changes;
 
-                return isOpen ? _react2.default.createElement(
+                return isOpen && changes !== undefined && changes.length > 0 ? _react2.default.createElement(
                     'div',
                     { className: _style2.default.editconflictHint },
                     _react2.default.createElement(
@@ -721,7 +650,7 @@ var PageEditsOverviewModal = exports.PageEditsOverviewModal = function PageEdits
                                 _react2.default.createElement(_neosUiI18n2.default, { id: 'PunktDe.EditConflictPrevention:Main:modal.thead.workspace' })
                             )
                         ),
-                        this.state.changedNodes.map(function (node) {
+                        changes.map(function (node) {
                             return _react2.default.createElement(_ChangeTableRow.ChangeTableRow, {
                                 changeType: node.changeType,
                                 changeDate: node.changeDate,
@@ -735,9 +664,9 @@ var PageEditsOverviewModal = exports.PageEditsOverviewModal = function PageEdits
         }, {
             key: 'render',
             value: function render() {
-                var _props = this.props,
-                    close = _props.close,
-                    isOpen = _props.isOpen;
+                var _props2 = this.props,
+                    close = _props2.close,
+                    isOpen = _props2.isOpen;
 
                 return _react2.default.createElement(_reactUiComponents.Dialog, {
                     actions: [this.renderCloseAction()],
@@ -762,7 +691,8 @@ var PageEditsOverviewModal = exports.PageEditsOverviewModal = function PageEdits
         return PageEditsOverviewModal;
     }(_react.PureComponent), _class2.propTypes = {
         isOpen: _propTypes2.default.bool.isRequired,
-        close: _propTypes2.default.func.isRequired
+        close: _propTypes2.default.func.isRequired,
+        changes: _propTypes2.default.array
     }, _temp)) || _class;
 };
 
@@ -1349,11 +1279,11 @@ exports.ChangeTableRow = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(1);
+var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _style = __webpack_require__(9);
+var _style = __webpack_require__(8);
 
 var _style2 = _interopRequireDefault(_style);
 
@@ -1469,6 +1399,154 @@ var ChangeTableRow = exports.ChangeTableRow = function (_PureComponent) {
 
     return ChangeTableRow;
 }(_react.PureComponent);
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.getNodeChanges = getNodeChanges;
+exports.watchGetNodeChanges = watchGetNodeChanges;
+
+var _effects = __webpack_require__(26);
+
+var _neosUiReduxStore = __webpack_require__(9);
+
+var _neosUiBackendConnector = __webpack_require__(27);
+
+var _redux = __webpack_require__(1);
+
+var _marked = /*#__PURE__*/regeneratorRuntime.mark(getNodeChanges),
+    _marked2 = /*#__PURE__*/regeneratorRuntime.mark(watchGetNodeChanges);
+
+function getNodeChanges() {
+    var documentNode, changes, response;
+    return regeneratorRuntime.wrap(function getNodeChanges$(_context) {
+        while (1) {
+            switch (_context.prev = _context.next) {
+                case 0:
+                    _context.next = 2;
+                    return (0, _effects.select)(_neosUiReduxStore.selectors.CR.Nodes.documentNodeSelector);
+
+                case 2:
+                    documentNode = _context.sent;
+                    changes = [];
+                    _context.prev = 4;
+                    _context.next = 7;
+                    return _neosUiBackendConnector.fetchWithErrorHandling.withCsrfToken(function (csrfToken) {
+                        return {
+                            url: '/editconflictprevention/api/getchangednodes?nodePath=' + documentNode.contextPath,
+                            method: 'GET',
+                            credentials: 'include',
+                            headers: {
+                                'X-Flow-Csrftoken': csrfToken,
+                                'Content-Type': 'application/json'
+                            }
+                        };
+                    });
+
+                case 7:
+                    response = _context.sent;
+                    _context.next = 10;
+                    return response.json().then(function (json) {
+                        return JSON.parse(json);
+                    });
+
+                case 10:
+                    changes = _context.sent;
+                    _context.next = 16;
+                    break;
+
+                case 13:
+                    _context.prev = 13;
+                    _context.t0 = _context['catch'](4);
+
+                    console.log(_context.t0);
+
+                case 16:
+                    if (!(changes.length > 0)) {
+                        _context.next = 21;
+                        break;
+                    }
+
+                    _context.next = 19;
+                    return (0, _effects.put)(_redux.actions.setChanges(changes));
+
+                case 19:
+                    _context.next = 23;
+                    break;
+
+                case 21:
+                    _context.next = 23;
+                    return (0, _effects.put)(_redux.actions.setChanges([]));
+
+                case 23:
+                case 'end':
+                    return _context.stop();
+            }
+        }
+    }, _marked, this, [[4, 13]]);
+}
+
+function watchGetNodeChanges() {
+    return regeneratorRuntime.wrap(function watchGetNodeChanges$(_context2) {
+        while (1) {
+            switch (_context2.prev = _context2.next) {
+                case 0:
+                    _context2.next = 2;
+                    return (0, _effects.takeEvery)(_neosUiReduxStore.actionTypes.CR.Nodes.SET_DOCUMENT_NODE, getNodeChanges);
+
+                case 2:
+                case 'end':
+                    return _context2.stop();
+            }
+        }
+    }, _marked2, this);
+}
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _readFromConsumerApi = __webpack_require__(0);
+
+var _readFromConsumerApi2 = _interopRequireDefault(_readFromConsumerApi);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = (0, _readFromConsumerApi2.default)('vendor')().reduxSagaEffects;
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.fetchWithErrorHandling = undefined;
+
+var _readFromConsumerApi = __webpack_require__(0);
+
+var _readFromConsumerApi2 = _interopRequireDefault(_readFromConsumerApi);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = (0, _readFromConsumerApi2.default)('NeosProjectPackages')().NeosUiBackendConnectorDefault;
+
+
+var fetchWithErrorHandling = (0, _readFromConsumerApi2.default)('NeosProjectPackages')().NeosUiBackendConnector.fetchWithErrorHandling;
+exports.fetchWithErrorHandling = fetchWithErrorHandling;
 
 /***/ })
 /******/ ]);

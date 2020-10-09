@@ -45,16 +45,6 @@ class ChangedNodesApiController extends ActionController
      * @Flow\Inject
      */
     protected $translator;
-    /**
-     * @param string $nodePath
-     */
-    public function nodeHasChangesAction(string $nodePath): void
-    {
-        $this->view->assign(
-            'value',
-            $this->changedNodesCalculator->documentHasChangesInOtherWorkspace($this->nodeService->getNodeFromContextPath($nodePath))
-        );
-    }
 
     /**
      * @param string $nodePath
@@ -94,7 +84,7 @@ class ChangedNodesApiController extends ActionController
     protected function parseWorkspaceName(ChangedNode $changedNode): string
     {
         if ($changedNode->getWorkspaceOwnerPrimaryElectronicAddress() !== null && $changedNode->getWorkspaceOwnerPrimaryElectronicAddress()->getType() === 'Email') {
-            return $changedNode->getWorkspaceOwnerName() . ' ' . $changedNode->getWorkspaceOwnerPrimaryElectronicAddress()->getIdentifier();
+            return $changedNode->getWorkspaceOwnerName() . ' (' . $changedNode->getWorkspaceOwnerPrimaryElectronicAddress()->getIdentifier()  . ')';
         }
         return $changedNode->getWorkspaceOwnerName();
     }
