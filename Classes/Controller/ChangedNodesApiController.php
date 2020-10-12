@@ -9,6 +9,7 @@ use Neos\ContentRepository\Domain\Repository\NodeDataRepository;
 use Neos\Flow\I18n\Translator;
 use Neos\Flow\Mvc\Controller\ActionController;
 use Neos\Flow\Mvc\View\JsonView;
+use Neos\Flow\Security\Context as SecurityContext;
 use Neos\Neos\Ui\ContentRepository\Service\NodeService;
 use PunktDe\EditConflictPrevention\Domain\ChangedNodesCalculator;
 use PunktDe\EditConflictPrevention\Domain\Dto\ChangedNode;
@@ -21,6 +22,12 @@ class ChangedNodesApiController extends ActionController
     protected $viewFormatToObjectNameMap = [
         'json' => JsonView::class
     ];
+
+    /**
+     * @Flow\Inject
+     * @var SecurityContext
+     */
+    protected $securityContext;
 
     /**
      * @var NodeDataRepository
@@ -45,16 +52,6 @@ class ChangedNodesApiController extends ActionController
      * @Flow\Inject
      */
     protected $translator;
-    /**
-     * @param string $nodePath
-     */
-    public function nodeHasChangesAction(string $nodePath): void
-    {
-        $this->view->assign(
-            'value',
-            $this->changedNodesCalculator->documentHasChangesInOtherWorkspace($this->nodeService->getNodeFromContextPath($nodePath))
-        );
-    }
 
     /**
      * @param string $nodePath
@@ -76,15 +73,22 @@ class ChangedNodesApiController extends ActionController
     /**
      * @param ChangedNode $changedNode
      * @return string[]
+     * @throws \Exception
      */
     protected function parseChangedNode(ChangedNode $changedNode): array
     {
-        return [
-            'changeDate' => $changedNode->getDate()->getTimestamp(),
-            'changeType' => $changedNode->getChangeType(),
-            'workspaceName' => $this->parseWorkspaceName($changedNode),
-            'nodeLabel' => $changedNode->getNodeLabel(),
-        ];
+        $changeDescription = [];
+
+        $this->securityContext->withoutAuthorizationChecks(function () use (&$changeDescription, $changedNode) {
+            $changeDescription = [
+                'changeDate' => $changedNode->getDate()->getTimestamp(),
+                'changeType' => $changedNode->getChangeType(),
+                'workspaceName' => $this->parseWorkspaceName($changedNode),
+                'nodeLabel' => $changedNode->getNodeLabel(),
+            ];
+        });
+
+        return $changeDescription;
     }
 
     /**w
@@ -94,7 +98,7 @@ class ChangedNodesApiController extends ActionController
     protected function parseWorkspaceName(ChangedNode $changedNode): string
     {
         if ($changedNode->getWorkspaceOwnerPrimaryElectronicAddress() !== null && $changedNode->getWorkspaceOwnerPrimaryElectronicAddress()->getType() === 'Email') {
-            return $changedNode->getWorkspaceOwnerName() . ' ' . $changedNode->getWorkspaceOwnerPrimaryElectronicAddress()->getIdentifier();
+            return $changedNode->getWorkspaceOwnerName() . ' (' . $changedNode->getWorkspaceOwnerPrimaryElectronicAddress()->getIdentifier()  . ')';
         }
         return $changedNode->getWorkspaceOwnerName();
     }
