@@ -9,6 +9,7 @@ use Neos\ContentRepository\Domain\Repository\NodeDataRepository;
 use Neos\Flow\I18n\Translator;
 use Neos\Flow\Mvc\Controller\ActionController;
 use Neos\Flow\Mvc\View\JsonView;
+use Neos\Flow\Security\Context as SecurityContext;
 use Neos\Neos\Ui\ContentRepository\Service\NodeService;
 use PunktDe\EditConflictPrevention\Domain\ChangedNodesCalculator;
 use PunktDe\EditConflictPrevention\Domain\Dto\ChangedNode;
@@ -21,6 +22,12 @@ class ChangedNodesApiController extends ActionController
     protected $viewFormatToObjectNameMap = [
         'json' => JsonView::class
     ];
+
+    /**
+     * @Flow\Inject
+     * @var SecurityContext
+     */
+    protected $securityContext;
 
     /**
      * @var NodeDataRepository
@@ -66,15 +73,22 @@ class ChangedNodesApiController extends ActionController
     /**
      * @param ChangedNode $changedNode
      * @return string[]
+     * @throws \Exception
      */
     protected function parseChangedNode(ChangedNode $changedNode): array
     {
-        return [
-            'changeDate' => $changedNode->getDate()->getTimestamp(),
-            'changeType' => $changedNode->getChangeType(),
-            'workspaceName' => $this->parseWorkspaceName($changedNode),
-            'nodeLabel' => $changedNode->getNodeLabel(),
-        ];
+        $changeDescription = [];
+
+        $this->securityContext->withoutAuthorizationChecks(function () use (&$changeDescription, $changedNode) {
+            $changeDescription = [
+                'changeDate' => $changedNode->getDate()->getTimestamp(),
+                'changeType' => $changedNode->getChangeType(),
+                'workspaceName' => $this->parseWorkspaceName($changedNode),
+                'nodeLabel' => $changedNode->getNodeLabel(),
+            ];
+        });
+
+        return $changeDescription;
     }
 
     /**w
