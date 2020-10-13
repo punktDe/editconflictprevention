@@ -88,11 +88,15 @@ class ChangedNodesCalculator
 
         $changedNodes = new ChangedNodeCollection();
         foreach ($this->findChangedNodeDataForDocument($documentNode) as $nodeData) {
+
             $context = $this->contextFactory->create([
                 'workspaceName' => $nodeData->getWorkspace()->getName(),
                 'currentDateTime' => new Now(),
                 'dimensions' => $documentNode->getContext()->getDimensions(),
                 'targetDimensions' => $documentNode->getContext()->getTargetDimensions(),
+                'invisibleContentShown'=> true,
+                'removedContentShown'=> true,
+                'inaccessibleContentShown' => true,
             ]);
 
             $node = $this->nodeFactory->createFromNodeData($nodeData, $context);
