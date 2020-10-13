@@ -53,7 +53,7 @@ class NodeDataRepository extends Repository
                 ':parentpathhash' => md5($documentNode->getPath())
             ]);
 
-        $contentCollectionPaths = array_column($queryBuilder->getQuery()->execute(), 'path');
+        $contentCollectionPaths = array_unique(array_column($queryBuilder->getQuery()->execute(), 'path'));
 
         // Either the documentNode has no content collection or the documentNot is just created and not persisted yet
         if (empty($contentCollectionPaths)) {
