@@ -56,18 +56,21 @@ class ChangedNodesApiController extends ActionController
     /**
      * @param string $nodePath
      * @throws NodeConfigurationException
+     * @throws \Exception
      */
     public function getChangedNodesAction(string $nodePath): void
     {
-        $documentNode = $this->nodeService->getNodeFromContextPath($nodePath);
-        $changedNodes = $this->changedNodesCalculator->calculateChangesForDocument($documentNode);
-        $result = [];
+        $this->securityContext->withoutAuthorizationChecks(function () use ($nodePath) {
+            $documentNode = $this->nodeService->getNodeFromContextPath($nodePath);
+            $changedNodes = $this->changedNodesCalculator->calculateChangesForDocument($documentNode);
+            $result = [];
 
-        foreach ($changedNodes as $changedNode) {
-            $result[] = $this->parseChangedNode($changedNode);
-        }
+            foreach ($changedNodes as $changedNode) {
+                $result[] = $this->parseChangedNode($changedNode);
+            }
 
-        $this->view->assign('value', json_encode($result));
+            $this->view->assign('value', json_encode($result));
+        });
     }
 
     /**
@@ -77,18 +80,12 @@ class ChangedNodesApiController extends ActionController
      */
     protected function parseChangedNode(ChangedNode $changedNode): array
     {
-        $changeDescription = [];
-
-        $this->securityContext->withoutAuthorizationChecks(function () use (&$changeDescription, $changedNode) {
-            $changeDescription = [
-                'changeDate' => $changedNode->getDate()->getTimestamp(),
-                'changeType' => $changedNode->getChangeType(),
-                'workspaceName' => $this->parseWorkspaceName($changedNode),
-                'nodeLabel' => $changedNode->getNodeLabel(),
-            ];
-        });
-
-        return $changeDescription;
+        return [
+            'changeDate' => $changedNode->getDate()->getTimestamp(),
+            'changeType' => $changedNode->getChangeType(),
+            'workspaceName' => $this->parseWorkspaceName($changedNode),
+            'nodeLabel' => $changedNode->getNodeLabel(),
+        ];
     }
 
     /**w
@@ -98,7 +95,7 @@ class ChangedNodesApiController extends ActionController
     protected function parseWorkspaceName(ChangedNode $changedNode): string
     {
         if ($changedNode->getWorkspaceOwnerPrimaryElectronicAddress() !== null && $changedNode->getWorkspaceOwnerPrimaryElectronicAddress()->getType() === 'Email') {
-            return $changedNode->getWorkspaceOwnerName() . ' (' . $changedNode->getWorkspaceOwnerPrimaryElectronicAddress()->getIdentifier()  . ')';
+            return $changedNode->getWorkspaceOwnerName() . ' (' . $changedNode->getWorkspaceOwnerPrimaryElectronicAddress()->getIdentifier() . ')';
         }
         return $changedNode->getWorkspaceOwnerName();
     }
