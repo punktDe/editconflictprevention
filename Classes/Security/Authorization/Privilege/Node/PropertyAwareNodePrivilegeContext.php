@@ -11,18 +11,10 @@ namespace PunktDe\EditConflictPrevention\Security\Authorization\Privilege\Node;
 use Neos\ContentRepository\Domain\Model\NodeInterface;
 use Neos\ContentRepository\Security\Authorization\Privilege\Node\PropertyAwareNodePrivilegeContext as NeosPropertyAwareNodePrivilegeContext;
 use Neos\Flow\Annotations as Flow;
-use Neos\Flow\Log\Utility\LogEnvironment;
-use Psr\Log\LoggerInterface;
 use PunktDe\EditConflictPrevention\Domain\ChangedNodesCalculator;
 
 class PropertyAwareNodePrivilegeContext extends NeosPropertyAwareNodePrivilegeContext
 {
-    /**
-     * @Flow\Inject
-     * @var LoggerInterface
-     */
-    protected $logger;
-
     /**
      * @Flow\Inject
      * @var ChangedNodesCalculator
@@ -36,11 +28,6 @@ class PropertyAwareNodePrivilegeContext extends NeosPropertyAwareNodePrivilegeCo
         }
 
         $documentNode = $this->changedNodesCalculator->resolveParentDocumentNode($this->node);
-
-        $return = $this->changedNodesCalculator->documentHasChangesInOtherWorkspace($documentNode);
-
-        $this->logger->debug(sprintf('Node privilege hasChangesInOtherWorkspaces for node %s returns %s', $this->node, $return ? 'true' : 'false'), LogEnvironment::fromMethodName(__METHOD__));
-
-        return $return;
+        return $this->changedNodesCalculator->documentHasChangesInOtherWorkspace($documentNode);
     }
 }

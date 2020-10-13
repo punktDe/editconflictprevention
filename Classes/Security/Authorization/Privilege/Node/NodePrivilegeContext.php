@@ -10,18 +10,10 @@ namespace PunktDe\EditConflictPrevention\Security\Authorization\Privilege\Node;
 
 use Neos\Flow\Annotations as Flow;
 use Neos\ContentRepository\Security\Authorization\Privilege\Node\NodePrivilegeContext as NeosNodePrivilegeContext;
-use Neos\Flow\Log\Utility\LogEnvironment;
-use Psr\Log\LoggerInterface;
 use PunktDe\EditConflictPrevention\Domain\ChangedNodesCalculator;
 
 class NodePrivilegeContext extends NeosNodePrivilegeContext
 {
-    /**
-     * @Flow\Inject
-     * @var LoggerInterface
-     */
-    protected $logger;
-
     /**
      * @Flow\Inject
      * @var ChangedNodesCalculator
@@ -30,12 +22,7 @@ class NodePrivilegeContext extends NeosNodePrivilegeContext
 
     public function hasChangesInOtherWorkspaces(): bool
     {
-
-        $return = $this->hasChangesInOtherWorkspaceInternal();
-
-        $this->logger->debug(sprintf('Node privilege hasChangesInOtherWorkspaces for node %s returns %s', $this->node, $return ? 'true' : 'false'), LogEnvironment::fromMethodName(__METHOD__));
-
-        return $return;
+        return $this->hasChangesInOtherWorkspaceInternal();
     }
 
     private function hasChangesInOtherWorkspaceInternal(): bool

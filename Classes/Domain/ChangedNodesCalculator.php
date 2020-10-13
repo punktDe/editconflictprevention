@@ -10,8 +10,10 @@ use Neos\ContentRepository\Domain\Service\ContextFactory;
 use Neos\Eel\FlowQuery\FlowQuery;
 use Neos\Flow\Annotations as Flow;
 use Neos\ContentRepository\Domain\Model\NodeInterface;
+use Neos\Flow\Log\Utility\LogEnvironment;
 use Neos\Flow\Utility\Now;
 use Neos\Neos\Service\UserService;
+use Psr\Log\LoggerInterface;
 use PunktDe\EditConflictPrevention\Domain\Dto\ChangedNode;
 use PunktDe\EditConflictPrevention\Domain\Repository\NodeDataRepository;
 
@@ -65,6 +67,12 @@ class ChangedNodesCalculator
      * @var NodeInterface[]
      */
     protected $firstLevelDocumentNodeCache = [];
+
+    /**
+     * @Flow\Inject
+     * @var LoggerInterface
+     */
+    protected $logger;
 
     /**
      * @param NodeInterface $documentNode
@@ -164,6 +172,8 @@ class ChangedNodesCalculator
         );
 
         $this->changedNodeDataForDocument[(string)$documentNode] = $nodes;
+
+        $this->logger->debug(sprintf('Found changed documents for node with identifier %s in workspaces %s', $documentNode->getIdentifier(), implode(array_map(function (NodeData $node) { return $node->getWorkspace()->getName();}, $nodes))), LogEnvironment::fromMethodName(__METHOD__));
 
         return $nodes;
     }
