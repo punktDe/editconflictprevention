@@ -3,10 +3,12 @@ declare(strict_types=1);
 
 namespace PunktDe\EditConflictPrevention\Controller;
 
+use Neos\ContentRepository\Domain\Model\NodeInterface;
 use Neos\Flow\Annotations as Flow;
 use Neos\ContentRepository\Exception\NodeConfigurationException;
 use Neos\ContentRepository\Domain\Repository\NodeDataRepository;
 use Neos\Flow\I18n\Translator;
+use Neos\Flow\Log\Utility\LogEnvironment;
 use Neos\Flow\Mvc\Controller\ActionController;
 use Neos\Flow\Mvc\View\JsonView;
 use Neos\Flow\Security\Context as SecurityContext;
@@ -62,11 +64,17 @@ class ChangedNodesApiController extends ActionController
     {
         $this->securityContext->withoutAuthorizationChecks(function () use ($nodePath) {
             $documentNode = $this->nodeService->getNodeFromContextPath($nodePath);
-            $changedNodes = $this->changedNodesCalculator->calculateChangesForDocument($documentNode);
+
             $result = [];
 
-            foreach ($changedNodes as $changedNode) {
-                $result[] = $this->parseChangedNode($changedNode);
+            if ($documentNode instanceof NodeInterface) {
+                $changedNodes = $this->changedNodesCalculator->calculateChangesForDocument($documentNode);
+
+                foreach ($changedNodes as $changedNode) {
+                    $result[] = $this->parseChangedNode($changedNode);
+                }
+            } else {
+                $this->logger->warning(sprintf('Unable to receive document node for nodePath %s', $nodePath), LogEnvironment::fromMethodName(__METHOD__));
             }
 
             $this->view->assign('value', json_encode($result));
