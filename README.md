@@ -1,6 +1,6 @@
 # PunktDe.EditConflictPrevention
 
-[![Latest Stable Version](https://poser.pugx.org/punktDe/editconflictprevention/v/stable)](https://packagist.org/packages/punktDe/editconflictprevention) [![Total Downloads](https://poser.pugx.org/punktDe/editconflictprevention/downloads)](https://packagist.org/packages/punktDe/editconflictprevention) [![License](https://poser.pugx.org/punktDe/editconflictprevention/license)](https://packagist.org/packages/punktDe/editconflictprevention)
+[![Build Status](https://travis-ci.com/punktDe/editconflictprevention.svg?branch=master)](https://travis-ci.com/punktDe/editconflictprevention) [![Latest Stable Version](https://poser.pugx.org/punktDe/editconflictprevention/v/stable)](https://packagist.org/packages/punktDe/editconflictprevention) [![Total Downloads](https://poser.pugx.org/punktDe/editconflictprevention/downloads)](https://packagist.org/packages/punktDe/editconflictprevention) [![License](https://poser.pugx.org/punktDe/editconflictprevention/license)](https://packagist.org/packages/punktDe/editconflictprevention)
 
 This package helps preventing edit conflicts when several editors are working on content simultaneously. 
 
