@@ -77,7 +77,7 @@ class NodeDataRepository extends Repository
         foreach (array_unique($contentCollectionPaths) as $contentCollectionPath) {
             $pathParameterName = ':x' . md5($contentCollectionPath);
             $pathCandidates[] = $queryBuilder->expr()->like('n.path', $pathParameterName);
-            $queryBuilder->setParameter($pathParameterName, $contentCollectionPath . '%');
+            $queryBuilder->setParameter($pathParameterName, $contentCollectionPath . '/%');
         }
 
         $queryBuilder->andWhere(implode(' OR ', $pathCandidates));

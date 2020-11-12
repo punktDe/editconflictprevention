@@ -1,0 +1,4 @@
+PunktDe:
+  EditConflictPrevention:
+    excludedDocumentTypes:
+      - 'PunktDe.EditConflictPrevention:ExcludedDocument'

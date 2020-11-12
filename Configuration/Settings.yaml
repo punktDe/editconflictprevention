@@ -1,0 +1,5 @@
+PunktDe:
+  EditConflictPrevention:
+
+    # List the document types here, that you like to exclude from detecting conflicts.
+    excludedDocumentTypes: []

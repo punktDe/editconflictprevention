@@ -1,0 +1,3 @@
+'PunktDe.EditConflictPrevention:ExcludedDocument':
+  superTypes:
+    'Neos.Neos:Document': true

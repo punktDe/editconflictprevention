@@ -21,9 +21,12 @@ use Neos\ContentRepository\Exception\NodeTypeNotFoundException;
 use Neos\Flow\Cli\Exception\StopCommandException;
 use Neos\Flow\Mvc\Exception\StopActionException;
 use Neos\Flow\Tests\FunctionalTestCase;
+use PunktDe\EditConflictPrevention\Domain\ChangedNodesCalculator;
 
-class ChangedNodesCalculatorTestCase extends FunctionalTestCase
+class ChangedNodesCalculatorTest extends FunctionalTestCase
 {
+    protected static $testablePersistenceEnabled = true;
+
     /**
      * @var WorkspaceRepository
      */
@@ -54,9 +57,17 @@ class ChangedNodesCalculatorTestCase extends FunctionalTestCase
      */
     protected $nodeDataRepository;
 
+    /**
+     * @var ChangedNodesCalculator
+     */
+    protected $changedNodesCalculator;
+
     public function setUp(): void
     {
         parent::setUp();
+
+        $this->changedNodesCalculator = $this->objectManager->get(ChangedNodesCalculator::class);
+
         $this->setupContentRepository();
     }
 
@@ -65,7 +76,7 @@ class ChangedNodesCalculatorTestCase extends FunctionalTestCase
      * @throws NodeTypeNotFoundException
      * @throws \Neos\Flow\Persistence\Exception\IllegalObjectTypeException
      */
-    private function setupContentRepository():void
+    private function setupContentRepository(): void
     {
         $this->workspaceRepository = $this->objectManager->get(WorkspaceRepository::class);
         $this->nodeTypeManager = $this->objectManager->get(NodeTypeManager::class);
@@ -79,8 +90,6 @@ class ChangedNodesCalculatorTestCase extends FunctionalTestCase
         $sharedWorkspace = new Workspace('staging', $liveWorkspace);
         $this->workspaceRepository->add($sharedWorkspace);
 
-
-
         $this->context = $this->contextFactory->create([
             'workspaceName' => 'live',
             'dimensions' => ['language' => ['en_US']],
@@ -90,8 +99,18 @@ class ChangedNodesCalculatorTestCase extends FunctionalTestCase
 
         $this->siteNode = $rootNode->createNode('welcome', $this->nodeTypeManager->getNodeType('Neos.NodeTypes:Page'));
         $this->siteNode->setProperty('title', 'welcome');
+    }
 
-
+    /**
+     * @test
+     *
+     * @throws NodeExistsException
+     * @throws NodeTypeNotFoundException
+     */
+    public function documentTypeIsExcluded(): void
+    {
+        $excludedNode = $this->siteNode->createNode('excluded', $this->nodeTypeManager->getNodeType('PunktDe.EditConflictPrevention:ExcludedDocument'));
+        self::assertTrue($this->changedNodesCalculator->documentTypeIsExcluded($excludedNode));
     }
 
     /**

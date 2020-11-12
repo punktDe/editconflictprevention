@@ -30,3 +30,7 @@ There are also privilege targets available which prevents editing a document and
 ## Installation
 
     $ composer require punktde/editconflictprevention  
+
+## Configuration
+
+`excludedDocumentTypes`: List the document types here, that you like to exclude from detecting conflicts.

@@ -75,18 +75,28 @@ class ChangedNodesCalculator
     protected $logger;
 
     /**
+     * @var array
+     * @Flow\InjectConfiguration(package="PunktDe.EditConflictPrevention", path="excludedDocumentTypes")
+     */
+    protected $excludedDocumentTypes = [];
+
+    /**
      * @param NodeInterface $documentNode
      * @return ChangedNodeCollection
      * @throws \Neos\ContentRepository\Exception\NodeConfigurationException
      */
     public function calculateChangesForDocument(NodeInterface $documentNode): ChangedNodeCollection
     {
+        $changedNodes = new ChangedNodeCollection();
+
+        if ($this->documentTypeIsExcluded($documentNode)) {
+            return $changedNodes;
+        }
 
         if (isset($this->calculatedChangesForDocument[(string)$documentNode])) {
             return $this->calculatedChangesForDocument[(string)$documentNode];
         }
 
-        $changedNodes = new ChangedNodeCollection();
         foreach ($this->findChangedNodeDataForDocument($documentNode) as $nodeData) {
 
             $context = $this->contextFactory->create([
@@ -94,8 +104,8 @@ class ChangedNodesCalculator
                 'currentDateTime' => new Now(),
                 'dimensions' => $documentNode->getContext()->getDimensions(),
                 'targetDimensions' => $documentNode->getContext()->getTargetDimensions(),
-                'invisibleContentShown'=> true,
-                'removedContentShown'=> true,
+                'invisibleContentShown' => true,
+                'removedContentShown' => true,
                 'inaccessibleContentShown' => true,
             ]);
 
@@ -114,6 +124,11 @@ class ChangedNodesCalculator
         $this->calculatedChangesForDocument[(string)$documentNode] = $changedNodes;
 
         return $changedNodes;
+    }
+
+    public function documentTypeIsExcluded(NodeInterface $documentNode): bool
+    {
+        return in_array($documentNode->getNodeType()->getName(), $this->excludedDocumentTypes, true);
     }
 
     public function documentHasChangesInOtherWorkspace(NodeInterface $documentNode): bool
@@ -177,7 +192,9 @@ class ChangedNodesCalculator
 
         $this->changedNodeDataForDocument[(string)$documentNode] = $nodes;
 
-        $this->logger->debug(sprintf('Found changed documents for node with identifier %s in workspaces %s', $documentNode->getIdentifier(), implode(array_map(function (NodeData $node) { return $node->getWorkspace()->getName();}, $nodes))), LogEnvironment::fromMethodName(__METHOD__));
+        $this->logger->debug(sprintf('Found changed documents for node with identifier %s in workspaces %s', $documentNode->getIdentifier(), implode(array_map(static function (NodeData $node) {
+            return $node->getWorkspace()->getName() . ' ';
+        }, $nodes))), LogEnvironment::fromMethodName(__METHOD__));
 
         return $nodes;
     }
