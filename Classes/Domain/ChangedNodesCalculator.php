@@ -89,10 +89,6 @@ class ChangedNodesCalculator
     {
         $changedNodes = new ChangedNodeCollection();
 
-        if ($this->documentTypeIsExcluded($documentNode)) {
-            return $changedNodes;
-        }
-
         if (isset($this->calculatedChangesForDocument[(string)$documentNode])) {
             return $this->calculatedChangesForDocument[(string)$documentNode];
         }
@@ -183,6 +179,10 @@ class ChangedNodesCalculator
     {
         if (isset($this->changedNodeDataForDocument[(string)$documentNode])) {
             return $this->changedNodeDataForDocument[(string)$documentNode];
+        }
+
+        if ($this->documentTypeIsExcluded($documentNode)) {
+            return [];
         }
 
         $nodes = $this->nodeDataRepository->findChangedSubNodesInOtherWorkspaces(
