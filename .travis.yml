@@ -11,6 +11,7 @@ before_install:
   - git clone https://github.com/neos/neos-base-distribution.git -b ${NEOS_TARGET_VERSION}
   - cd neos-base-distribution
   - composer require --no-update --no-interaction punktde/editconflictprevention
+  - composer require --no-update --no-interaction typo3fluid/fluid 2.6.9
 install:
   - composer install --no-interaction
   - cd ..
