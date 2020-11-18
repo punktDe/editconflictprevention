@@ -102,9 +102,14 @@ class ChangedNodesApiController extends ActionController
      */
     protected function parseWorkspaceName(ChangedNode $changedNode): string
     {
+        if (!$changedNode->isPersonalWorkspace()) {
+            return $changedNode->getWorkspaceTitle();
+        }
+
         if ($changedNode->getWorkspaceOwnerPrimaryElectronicAddress() !== null && $changedNode->getWorkspaceOwnerPrimaryElectronicAddress()->getType() === 'Email') {
             return $changedNode->getWorkspaceOwnerName() . ' (' . $changedNode->getWorkspaceOwnerPrimaryElectronicAddress()->getIdentifier() . ')';
         }
-        return $changedNode->getWorkspaceOwnerName();
+
+        return $changedNode->getWorkspaceOwnerName() ?? '';
     }
 }
