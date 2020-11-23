@@ -88,11 +88,13 @@ class ChangedNodesApiController extends ActionController
      */
     protected function parseChangedNode(ChangedNode $changedNode): array
     {
+        $nodeDescription = $changedNode->isDocumentNode() ? $this->translator->translateById('documentPropertiesChanged', [], null, null, 'Main', 'PunktDe.EditConflictPrevention') : $changedNode->getNodeLabel();
+
         return [
             'changeDate' => $changedNode->getDate()->getTimestamp(),
             'changeType' => $changedNode->getChangeType(),
             'workspaceName' => $this->parseWorkspaceName($changedNode),
-            'nodeLabel' => $changedNode->getNodeLabel(),
+            'nodeLabel' => $nodeDescription,
         ];
     }
 

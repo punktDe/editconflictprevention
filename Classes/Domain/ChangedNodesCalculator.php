@@ -190,11 +190,21 @@ class ChangedNodesCalculator
             $this->userService->getPersonalWorkspace()
         );
 
+
         $this->changedNodeDataForDocument[(string)$documentNode] = $nodes;
 
-        $this->logger->debug(sprintf('Found changed documents for node with identifier %s in workspaces %s', $documentNode->getIdentifier(), implode(array_map(static function (NodeData $node) {
-            return $node->getWorkspace()->getName() . ' ';
-        }, $nodes))), LogEnvironment::fromMethodName(__METHOD__));
+        $this->logger->debug(
+            sprintf(
+                'Found changed nodes (%s) for document with identifier %s in workspaces %s',
+                implode(', ', array_unique(array_map(static function (NodeData $node) {
+                    return $node->getIdentifier();
+                }, $nodes))),
+                $documentNode->getIdentifier(),
+                implode(', ', array_map(static function (NodeData $node) {
+                        return $node->getWorkspace()->getName();
+                    }, $nodes)
+                ),
+            ), LogEnvironment::fromMethodName(__METHOD__));
 
         return $nodes;
     }

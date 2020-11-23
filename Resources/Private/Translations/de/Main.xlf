@@ -49,11 +49,16 @@
                 <target>entfernt</target>
             </trans-unit>
 
+            <trans-unit id="documentPropertiesChanged" xml:space="preserve">
+                <source>Document properties have been changed.</source>
+                <target>Eigenschaften des Dokumentes wurden geändert.</target>
+            </trans-unit>
+
             <trans-unit id="timespan.recent">
                 <source>just now</source>
                 <target>eben gerade</target>
             </trans-unit>
-            
+
             <trans-unit id="timespan.minutes.0">
                 <source>just now</source>
                 <target>eben gerade</target>

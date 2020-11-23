@@ -87,4 +87,9 @@ final class ChangedNode
     {
         return $this->changeType;
     }
+
+    public function isDocumentNode(): bool
+    {
+        return $this->node->getNodeType()->isOfType('Neos.Neos:Document');
+    }
 }

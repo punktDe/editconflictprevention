@@ -55,7 +55,7 @@ class NodeDataRepository extends Repository
 
         $contentCollectionPaths = array_unique(array_column($queryBuilder->getQuery()->execute(), 'path'));
 
-        // Either the documentNode has no content collection or the documentNot is just created and not persisted yet
+        // Either the documentNode has no content collection or the documentNote is just created and not persisted yet
         if (empty($contentCollectionPaths)) {
             return [];
         }
@@ -74,11 +74,15 @@ class NodeDataRepository extends Repository
         ]);
 
         $pathCandidates = [];
+
         foreach (array_unique($contentCollectionPaths) as $contentCollectionPath) {
             $pathParameterName = ':x' . md5($contentCollectionPath);
             $pathCandidates[] = $queryBuilder->expr()->like('n.path', $pathParameterName);
-            $queryBuilder->setParameter($pathParameterName, $contentCollectionPath . '/%');
+            $queryBuilder->setParameter($pathParameterName, $contentCollectionPath . '%');
         }
+
+        $pathCandidates[] = $queryBuilder->expr()->eq('n.path', ':documentPath');
+        $queryBuilder->setParameter(':documentPath', $documentNode->getPath());
 
         $queryBuilder->andWhere(implode(' OR ', $pathCandidates));
 

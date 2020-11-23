@@ -38,6 +38,10 @@
                 <source>removed</source>
             </trans-unit>
 
+            <trans-unit id="documentPropertiesChanged" xml:space="preserve">
+                <source>Document properties have been changed.</source>
+            </trans-unit>
+
             <trans-unit id="timespan.recent">
                 <source>just now</source>
             </trans-unit>
