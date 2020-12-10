@@ -138,7 +138,7 @@ class ChangedNodesCalculator
      * @return NodeInterface
      * @throws \Neos\Eel\Exception
      */
-    public function resolveParentDocumentNode(NodeInterface $node): NodeInterface
+    public function resolveParentDocumentNode(NodeInterface $node): ?NodeInterface
     {
 
         if ($node->getNodeType()->isOfType(self::NODETYPE_NEOS_DOCUMENT)) {
@@ -153,6 +153,13 @@ class ChangedNodesCalculator
 
         /** @var NodeInterface $parent */
         $parent = (new FlowQuery([$node]))->closest('[instanceof ' . self::NODETYPE_NEOS_DOCUMENT . ']')->get(0);
+
+        $this->logger->error(sprintf('The parent document for node %s could not be determined', (string)$node), LogEnvironment::fromMethodName(__METHOD__));
+
+        if (!$parent instanceof NodeInterface) {
+            return null;
+        }
+
         $this->firstLevelDocumentNodeCache[$parent->getPath()] = $parent;
 
         return $parent;

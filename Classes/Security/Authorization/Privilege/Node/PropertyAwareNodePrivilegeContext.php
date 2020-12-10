@@ -28,6 +28,11 @@ class PropertyAwareNodePrivilegeContext extends NeosPropertyAwareNodePrivilegeCo
         }
 
         $documentNode = $this->changedNodesCalculator->resolveParentDocumentNode($this->node);
+
+        if (!$documentNode instanceof NodeInterface) {
+            return false;
+        }
+
         return $this->changedNodesCalculator->documentHasChangesInOtherWorkspace($documentNode);
     }
 }
