@@ -154,9 +154,9 @@ class ChangedNodesCalculator
         /** @var NodeInterface $parent */
         $parent = (new FlowQuery([$node]))->closest('[instanceof ' . self::NODETYPE_NEOS_DOCUMENT . ']')->get(0);
 
-        $this->logger->error(sprintf('The parent document for node %s could not be determined', (string)$node), LogEnvironment::fromMethodName(__METHOD__));
 
         if (!$parent instanceof NodeInterface) {
+            $this->logger->error(sprintf('The parent document for node %s could not be determined', (string)$node), LogEnvironment::fromMethodName(__METHOD__));
             return null;
         }
 
