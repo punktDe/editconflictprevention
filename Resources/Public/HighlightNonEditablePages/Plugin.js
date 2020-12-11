@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 10);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -100,11 +100,11 @@ exports.reducer = exports.actions = exports.actionTypes = undefined;
 
 var _handleActions;
 
-var _reduxActions = __webpack_require__(17);
+var _reduxActions = __webpack_require__(16);
 
 var _plowJs = __webpack_require__(3);
 
-var _utilsRedux = __webpack_require__(18);
+var _utilsRedux = __webpack_require__(17);
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -233,7 +233,7 @@ module.exports = (0, _readFromConsumerApi2.default)('vendor')().PropTypes;
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(20);
+var content = __webpack_require__(19);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -241,7 +241,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(22)(content, options);
+var update = __webpack_require__(21)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -264,13 +264,7 @@ if(false) {
 "use strict";
 
 
-var _readFromConsumerApi = __webpack_require__(0);
-
-var _readFromConsumerApi2 = _interopRequireDefault(_readFromConsumerApi);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = (0, _readFromConsumerApi2.default)('NeosProjectPackages')().NeosUiReduxStore;
+__webpack_require__(10);
 
 /***/ }),
 /* 10 */
@@ -279,26 +273,17 @@ module.exports = (0, _readFromConsumerApi2.default)('NeosProjectPackages')().Neo
 "use strict";
 
 
-__webpack_require__(11);
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _neosUiExtensibility = __webpack_require__(12);
+var _neosUiExtensibility = __webpack_require__(11);
 
 var _neosUiExtensibility2 = _interopRequireDefault(_neosUiExtensibility);
 
-var _PageHasEditsButton = __webpack_require__(16);
+var _PageHasEditsButton = __webpack_require__(15);
 
-var _PageEditsOverviewModal = __webpack_require__(19);
+var _PageEditsOverviewModal = __webpack_require__(18);
 
 var _redux = __webpack_require__(1);
 
-var _sagas = __webpack_require__(25);
+var _sagas = __webpack_require__(24);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -317,7 +302,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 });
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -328,7 +313,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.createConsumerApi = undefined;
 
-var _createConsumerApi = __webpack_require__(13);
+var _createConsumerApi = __webpack_require__(12);
 
 var _createConsumerApi2 = _interopRequireDefault(_createConsumerApi);
 
@@ -342,7 +327,7 @@ exports.default = (0, _readFromConsumerApi2.default)('manifest');
 exports.createConsumerApi = _createConsumerApi2.default;
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -353,9 +338,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = createConsumerApi;
 
-var _package = __webpack_require__(14);
+var _package = __webpack_require__(13);
 
-var _manifest = __webpack_require__(15);
+var _manifest = __webpack_require__(14);
 
 var _manifest2 = _interopRequireDefault(_manifest);
 
@@ -384,13 +369,13 @@ function createConsumerApi(manifests, exposureMap) {
 }
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports) {
 
-module.exports = {"_args":[["@neos-project/neos-ui-extensibility@1.0.14","/Users/ry81/Workspace/Projects/cgm-app/DistributionPackages/editconflictprevention/Resources/Private/JavaScript/HighlightNonEditablePages"]],"_development":true,"_from":"@neos-project/neos-ui-extensibility@1.0.14","_id":"@neos-project/neos-ui-extensibility@1.0.14","_inBundle":false,"_integrity":"sha512-G1C+ZkYjTGST3E1vfgolygcBqKn7XphMoLZTcz5ddh/Phabo23N+54zwi1mLYjAtefuIY/go0t1NQeDyIexmRg==","_location":"/@neos-project/neos-ui-extensibility","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"@neos-project/neos-ui-extensibility@1.0.14","name":"@neos-project/neos-ui-extensibility","escapedName":"@neos-project%2fneos-ui-extensibility","scope":"@neos-project","rawSpec":"1.0.14","saveSpec":null,"fetchSpec":"1.0.14"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/@neos-project/neos-ui-extensibility/-/neos-ui-extensibility-1.0.14.tgz","_spec":"1.0.14","_where":"/Users/ry81/Workspace/Projects/cgm-app/DistributionPackages/editconflictprevention/Resources/Private/JavaScript/HighlightNonEditablePages","bin":{"neos-react-scripts":"bin/neos-react-scripts.js"},"dependencies":{"@neos-project/build-essentials":"1.0.14","@neos-project/positional-array-sorter":"1.0.14","babel-core":"^6.13.2","babel-eslint":"^7.1.1","babel-loader":"^7.1.2","babel-plugin-transform-decorators-legacy":"^1.3.4","babel-plugin-transform-object-rest-spread":"^6.20.1","babel-plugin-webpack-alias":"^2.1.1","babel-preset-es2015":"^6.13.2","babel-preset-react":"^6.3.13","babel-preset-stage-0":"^6.3.13","chalk":"^1.1.3","css-loader":"^0.28.4","file-loader":"^1.1.5","json-loader":"^0.5.4","postcss-loader":"^2.0.10","react-dev-utils":"^0.5.0","style-loader":"^0.19.0"},"description":"Extensibility mechanisms for the Neos CMS UI","devDependencies":{"@neos-project/babel-preset-neos-ui":"1.0.14","@neos-project/jest-preset-neos-ui":"1.0.14"},"jest":{"preset":"@neos-project/jest-preset-neos-ui"},"main":"./src/index.js","name":"@neos-project/neos-ui-extensibility","scripts":{"build":"exit 0","build:watch":"exit 0","clean":"rimraf ./lib ./dist","jest":"NODE_ENV=test jest","lint":"eslint src","prebuild":"check-dependencies && yarn clean","test":"yarn jest -- -w 2 --coverage","test:watch":"yarn jest -- --watch"},"version":"1.0.14"}
+module.exports = {"_args":[["@neos-project/neos-ui-extensibility@1.0.14","/Users/ry81/Workspace/Projects/editconflictprevention/Resources/Private/JavaScript/HighlightNonEditablePages"]],"_development":true,"_from":"@neos-project/neos-ui-extensibility@1.0.14","_id":"@neos-project/neos-ui-extensibility@1.0.14","_inBundle":false,"_integrity":"sha512-G1C+ZkYjTGST3E1vfgolygcBqKn7XphMoLZTcz5ddh/Phabo23N+54zwi1mLYjAtefuIY/go0t1NQeDyIexmRg==","_location":"/@neos-project/neos-ui-extensibility","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"@neos-project/neos-ui-extensibility@1.0.14","name":"@neos-project/neos-ui-extensibility","escapedName":"@neos-project%2fneos-ui-extensibility","scope":"@neos-project","rawSpec":"1.0.14","saveSpec":null,"fetchSpec":"1.0.14"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/@neos-project/neos-ui-extensibility/-/neos-ui-extensibility-1.0.14.tgz","_spec":"1.0.14","_where":"/Users/ry81/Workspace/Projects/editconflictprevention/Resources/Private/JavaScript/HighlightNonEditablePages","bin":{"neos-react-scripts":"bin/neos-react-scripts.js"},"dependencies":{"@neos-project/build-essentials":"1.0.14","@neos-project/positional-array-sorter":"1.0.14","babel-core":"^6.13.2","babel-eslint":"^7.1.1","babel-loader":"^7.1.2","babel-plugin-transform-decorators-legacy":"^1.3.4","babel-plugin-transform-object-rest-spread":"^6.20.1","babel-plugin-webpack-alias":"^2.1.1","babel-preset-es2015":"^6.13.2","babel-preset-react":"^6.3.13","babel-preset-stage-0":"^6.3.13","chalk":"^1.1.3","css-loader":"^0.28.4","file-loader":"^1.1.5","json-loader":"^0.5.4","postcss-loader":"^2.0.10","react-dev-utils":"^0.5.0","style-loader":"^0.19.0"},"description":"Extensibility mechanisms for the Neos CMS UI","devDependencies":{"@neos-project/babel-preset-neos-ui":"1.0.14","@neos-project/jest-preset-neos-ui":"1.0.14"},"jest":{"preset":"@neos-project/jest-preset-neos-ui"},"main":"./src/index.js","name":"@neos-project/neos-ui-extensibility","scripts":{"build":"exit 0","build:watch":"exit 0","clean":"rimraf ./lib ./dist","jest":"NODE_ENV=test jest","lint":"eslint src","prebuild":"check-dependencies && yarn clean","test":"yarn jest -- -w 2 --coverage","test:watch":"yarn jest -- --watch"},"version":"1.0.14"}
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -412,7 +397,7 @@ exports.default = function (manifests) {
 };
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -497,7 +482,7 @@ var PageHasEditsButton = exports.PageHasEditsButton = function PageHasEditsButto
 };
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -512,7 +497,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 module.exports = (0, _readFromConsumerApi2.default)('vendor')().reduxActions;
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -527,7 +512,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 module.exports = (0, _readFromConsumerApi2.default)('NeosProjectPackages')().UtilsRedux;
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -560,7 +545,7 @@ var _style = __webpack_require__(8);
 
 var _style2 = _interopRequireDefault(_style);
 
-var _ChangeTableRow = __webpack_require__(24);
+var _ChangeTableRow = __webpack_require__(23);
 
 var _neosUiI18n = __webpack_require__(4);
 
@@ -697,15 +682,15 @@ var PageEditsOverviewModal = exports.PageEditsOverviewModal = function PageEdits
 };
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(21)(false);
+exports = module.exports = __webpack_require__(20)(false);
 // imports
 
 
 // module
-exports.push([module.i, ".style__editconflictTable___oyacK {\n    width: 100%;\n    padding-top: 1rem;\n}\n\n.style__editconflictHint___29cwl {\n    padding: 0 1rem;\n}\n\n.style__editconflictTable___oyacK th, td {\n    padding: .5rem 1rem;\n    text-align: left;\n    vertical-align: top;\n    border-bottom: 1px solid #222;\n}\n\n.style__editconflictTable___oyacK td {\n    background: #323232;\n}\n\n.style__editconflictCreated___1hR2F,\n.style__editconflictChanged___2hrQH,\n.style__editconflictRemoved___2rPuI {\n    padding: .15rem .25rem;\n    border-radius: 12px;\n    color: #323232;;\n}\n\n.style__editconflictCreated___1hR2F {\n    background-color: #00a338;\n}\n\n.style__editconflictChanged___2hrQH {\n    background-color: #00ADEE;\n}\n\n.style__editconflictRemoved___2rPuI {\n    background-color: #ff460d;\n}\n", ""]);
+exports.push([module.i, ".style__editconflictTable___oyacK {\n    width: 100%;\n    padding-top: 1rem;\n}\n\n.style__editconflictHint___29cwl {\n    padding: 0 1rem;\n}\n\n.style__editconflictTable___oyacK th, .style__editconflictTable___oyacK td {\n    padding: .5rem 1rem;\n    text-align: left;\n    vertical-align: top;\n    border-bottom: 1px solid #222;\n}\n\n.style__editconflictTable___oyacK td {\n    background: #323232;\n}\n\n.style__editconflictCreated___1hR2F,\n.style__editconflictChanged___2hrQH,\n.style__editconflictRemoved___2rPuI {\n    padding: .15rem .25rem;\n    border-radius: 12px;\n    color: #323232;;\n}\n\n.style__editconflictCreated___1hR2F {\n    background-color: #00a338;\n}\n\n.style__editconflictChanged___2hrQH {\n    background-color: #00ADEE;\n}\n\n.style__editconflictRemoved___2rPuI {\n    background-color: #ff460d;\n}\n", ""]);
 
 // exports
 exports.locals = {
@@ -717,7 +702,7 @@ exports.locals = {
 };
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports) {
 
 /*
@@ -799,7 +784,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -855,7 +840,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(23);
+var	fixUrls = __webpack_require__(22);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -1171,7 +1156,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports) {
 
 
@@ -1266,7 +1251,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1401,7 +1386,7 @@ var ChangeTableRow = exports.ChangeTableRow = function (_PureComponent) {
 }(_react.PureComponent);
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1413,9 +1398,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.getNodeChanges = getNodeChanges;
 exports.watchGetNodeChanges = watchGetNodeChanges;
 
-var _effects = __webpack_require__(26);
+var _effects = __webpack_require__(25);
 
-var _neosUiReduxStore = __webpack_require__(9);
+var _neosUiReduxStore = __webpack_require__(26);
 
 var _neosUiBackendConnector = __webpack_require__(27);
 
@@ -1510,7 +1495,7 @@ function watchGetNodeChanges() {
 }
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1523,6 +1508,21 @@ var _readFromConsumerApi2 = _interopRequireDefault(_readFromConsumerApi);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = (0, _readFromConsumerApi2.default)('vendor')().reduxSagaEffects;
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _readFromConsumerApi = __webpack_require__(0);
+
+var _readFromConsumerApi2 = _interopRequireDefault(_readFromConsumerApi);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = (0, _readFromConsumerApi2.default)('NeosProjectPackages')().NeosUiReduxStore;
 
 /***/ }),
 /* 27 */
