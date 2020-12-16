@@ -1425,13 +1425,16 @@ function getNodeChanges() {
                     _context.next = 7;
                     return _neosUiBackendConnector.fetchWithErrorHandling.withCsrfToken(function (csrfToken) {
                         return {
-                            url: '/editconflictprevention/api/getchangednodes?nodePath=' + documentNode.contextPath,
-                            method: 'GET',
+                            url: '/editconflictprevention/api/getchangednodes',
+                            method: 'POST',
                             credentials: 'include',
                             headers: {
                                 'X-Flow-Csrftoken': csrfToken,
                                 'Content-Type': 'application/json'
-                            }
+                            },
+                            body: JSON.stringify({
+                                nodePath: documentNode.contextPath
+                            })
                         };
                     });
 
