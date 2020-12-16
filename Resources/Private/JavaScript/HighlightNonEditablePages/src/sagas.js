@@ -8,7 +8,7 @@ export function* getNodeChanges() {
     let changes = [];
     try {
         const response = yield fetchWithErrorHandling.withCsrfToken(csrfToken => ({
-            url: `/editconflictprevention/api/getchangednodes?nodePath=${documentNode.contextPath}`,
+            url: `/editconflictprevention/api/getchangednodes?nodePath=${encodeURIComponent(documentNode.contextPath)}`,
             method: 'GET',
             credentials: 'include',
             headers: {

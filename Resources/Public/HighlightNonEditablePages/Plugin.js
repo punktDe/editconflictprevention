@@ -1422,7 +1422,9 @@ function getNodeChanges() {
                     documentNode = _context.sent;
                     changes = [];
                     _context.prev = 4;
-                    _context.next = 7;
+
+                    console.log(documentNode.contextPath);
+                    _context.next = 8;
                     return _neosUiBackendConnector.fetchWithErrorHandling.withCsrfToken(function (csrfToken) {
                         return {
                             url: '/editconflictprevention/api/getchangednodes?nodePath=' + documentNode.contextPath,
@@ -1435,47 +1437,47 @@ function getNodeChanges() {
                         };
                     });
 
-                case 7:
+                case 8:
                     response = _context.sent;
-                    _context.next = 10;
+                    _context.next = 11;
                     return response.json().then(function (json) {
                         return JSON.parse(json);
                     });
 
-                case 10:
+                case 11:
                     changes = _context.sent;
-                    _context.next = 16;
+                    _context.next = 17;
                     break;
 
-                case 13:
-                    _context.prev = 13;
+                case 14:
+                    _context.prev = 14;
                     _context.t0 = _context['catch'](4);
 
                     console.log(_context.t0);
 
-                case 16:
+                case 17:
                     if (!(changes.length > 0)) {
-                        _context.next = 21;
+                        _context.next = 22;
                         break;
                     }
 
-                    _context.next = 19;
+                    _context.next = 20;
                     return (0, _effects.put)(_redux.actions.setChanges(changes));
 
-                case 19:
-                    _context.next = 23;
+                case 20:
+                    _context.next = 24;
                     break;
 
-                case 21:
-                    _context.next = 23;
+                case 22:
+                    _context.next = 24;
                     return (0, _effects.put)(_redux.actions.setChanges([]));
 
-                case 23:
+                case 24:
                 case 'end':
                     return _context.stop();
             }
         }
-    }, _marked, this, [[4, 13]]);
+    }, _marked, this, [[4, 14]]);
 }
 
 function watchGetNodeChanges() {
