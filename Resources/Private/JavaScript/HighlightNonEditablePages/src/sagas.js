@@ -8,13 +8,16 @@ export function* getNodeChanges() {
     let changes = [];
     try {
         const response = yield fetchWithErrorHandling.withCsrfToken(csrfToken => ({
-            url: `/editconflictprevention/api/getchangednodes?nodePath=${encodeURIComponent(documentNode.contextPath)}`,
-            method: 'GET',
+            url: '/editconflictprevention/api/getchangednodes',
+            method: 'POST',
             credentials: 'include',
             headers: {
                 'X-Flow-Csrftoken': csrfToken,
                 'Content-Type': 'application/json'
-            }
+            },
+            body: JSON.stringify({
+                nodePath: documentNode.contextPath
+            })
         }));
         changes = yield response.json().then(json => JSON.parse(json));
     } catch (error) {

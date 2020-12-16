@@ -1422,62 +1422,63 @@ function getNodeChanges() {
                     documentNode = _context.sent;
                     changes = [];
                     _context.prev = 4;
-
-                    console.log(documentNode.contextPath);
-                    _context.next = 8;
+                    _context.next = 7;
                     return _neosUiBackendConnector.fetchWithErrorHandling.withCsrfToken(function (csrfToken) {
                         return {
-                            url: '/editconflictprevention/api/getchangednodes?nodePath=' + documentNode.contextPath,
-                            method: 'GET',
+                            url: '/editconflictprevention/api/getchangednodes',
+                            method: 'POST',
                             credentials: 'include',
                             headers: {
                                 'X-Flow-Csrftoken': csrfToken,
                                 'Content-Type': 'application/json'
-                            }
+                            },
+                            body: JSON.stringify({
+                                nodePath: documentNode.contextPath
+                            })
                         };
                     });
 
-                case 8:
+                case 7:
                     response = _context.sent;
-                    _context.next = 11;
+                    _context.next = 10;
                     return response.json().then(function (json) {
                         return JSON.parse(json);
                     });
 
-                case 11:
+                case 10:
                     changes = _context.sent;
-                    _context.next = 17;
+                    _context.next = 16;
                     break;
 
-                case 14:
-                    _context.prev = 14;
+                case 13:
+                    _context.prev = 13;
                     _context.t0 = _context['catch'](4);
 
                     console.log(_context.t0);
 
-                case 17:
+                case 16:
                     if (!(changes.length > 0)) {
-                        _context.next = 22;
+                        _context.next = 21;
                         break;
                     }
 
-                    _context.next = 20;
+                    _context.next = 19;
                     return (0, _effects.put)(_redux.actions.setChanges(changes));
 
-                case 20:
-                    _context.next = 24;
+                case 19:
+                    _context.next = 23;
                     break;
 
-                case 22:
-                    _context.next = 24;
+                case 21:
+                    _context.next = 23;
                     return (0, _effects.put)(_redux.actions.setChanges([]));
 
-                case 24:
+                case 23:
                 case 'end':
                     return _context.stop();
             }
         }
-    }, _marked, this, [[4, 14]]);
+    }, _marked, this, [[4, 13]]);
 }
 
 function watchGetNodeChanges() {
