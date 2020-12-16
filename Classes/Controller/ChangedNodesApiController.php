@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace PunktDe\EditConflictPrevention\Controller;
 
 use Neos\ContentRepository\Domain\Model\NodeInterface;
+use Neos\ContentRepository\Domain\Utility\NodePaths;
 use Neos\Flow\Annotations as Flow;
 use Neos\ContentRepository\Exception\NodeConfigurationException;
 use Neos\ContentRepository\Domain\Repository\NodeDataRepository;
@@ -63,7 +64,7 @@ class ChangedNodesApiController extends ActionController
     public function getChangedNodesAction(string $nodePath): void
     {
         $this->securityContext->withoutAuthorizationChecks(function () use ($nodePath) {
-            $documentNode = $this->nodeService->getNodeFromContextPath($nodePath);
+            $documentNode = $this->getNodeInCurrentWorkspaceOrLive($nodePath);
 
             $result = [];
 
@@ -73,12 +74,30 @@ class ChangedNodesApiController extends ActionController
                 foreach ($changedNodes as $changedNode) {
                     $result[] = $this->parseChangedNode($changedNode);
                 }
-            } else {
-                $this->logger->warning(sprintf('Unable to receive document node for nodePath %s', $nodePath), LogEnvironment::fromMethodName(__METHOD__));
             }
 
             $this->view->assign('value', json_encode($result));
         });
+    }
+
+    protected function getNodeInCurrentWorkspaceOrLive(string $nodePath): ?NodeInterface
+    {
+        $documentNode = $this->nodeService->getNodeFromContextPath($nodePath);
+        if ($documentNode !== null) {
+            return $documentNode;
+        }
+
+        $this->logger->warning(sprintf('Unable to receive document node for nodePath %s', $nodePath), LogEnvironment::fromMethodName(__METHOD__));
+
+        $nodePathAndContext = NodePaths::explodeContextPath($nodePath);
+        $liveNodePath = NodePaths::generateContextPath($nodePathAndContext['nodePath'], 'live', $nodePathAndContext['dimensions']);
+        $documentNode = $this->nodeService->getNodeFromContextPath($liveNodePath);
+
+        if ($documentNode === null) {
+            $this->logger->warning(sprintf('Unable to receive document node for nodePath %s', $liveNodePath), LogEnvironment::fromMethodName(__METHOD__));
+        }
+
+        return $documentNode;
     }
 
     /**
