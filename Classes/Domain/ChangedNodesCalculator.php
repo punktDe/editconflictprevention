@@ -197,6 +197,14 @@ class ChangedNodesCalculator
             $this->userService->getPersonalWorkspace()
         );
 
+        // Filter out internal nodes
+        $nodes = array_filter($nodes, static function (NodeData $nodeData) {
+            return !$nodeData->isInternal();
+        });
+
+        if (empty($nodes)) {
+            return [];
+        }
 
         $this->changedNodeDataForDocument[(string)$documentNode] = $nodes;
 
