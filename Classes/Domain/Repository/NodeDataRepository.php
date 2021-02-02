@@ -18,7 +18,7 @@ class NodeDataRepository extends Repository
 {
     public const ENTITY_CLASSNAME = NodeData::class;
 
-    private const NODETYPE_CONNTENT_COLLECTION = 'Neos.Neos:ContentCollection';
+    private const NODETYPE_CONTENT_COLLECTION = 'Neos.Neos:ContentCollection';
 
     /**
      * @Flow\Inject
@@ -30,7 +30,7 @@ class NodeDataRepository extends Repository
      * @Flow\Inject
      * @var NodeTypeManager
      */
-    protected $nodeTypeMananger;
+    protected $nodeTypeManager;
 
     /**
      * First get all content collection nodes which are a direct child of the given document.
@@ -42,7 +42,7 @@ class NodeDataRepository extends Repository
      */
     public function findChangedSubNodesInOtherWorkspaces(NodeInterface $documentNode, Workspace $userWorkspace): array
     {
-        $contentCollectionNodeTypes = $this->nodeTypeMananger->getSubNodeTypes(self::NODETYPE_CONNTENT_COLLECTION);
+        $contentCollectionNodeTypes = array_merge([$this->nodeTypeManager->getNodeType(self::NODETYPE_CONTENT_COLLECTION)], $this->nodeTypeManager->getSubNodeTypes(self::NODETYPE_CONTENT_COLLECTION));
 
         $queryBuilder = $this->entityManager->createQueryBuilder();
         $queryBuilder->select('n.path')
@@ -55,7 +55,7 @@ class NodeDataRepository extends Repository
 
         $contentCollectionPaths = array_unique(array_column($queryBuilder->getQuery()->execute(), 'path'));
 
-        // Either the documentNode has no content collection or the documentNote is just created and not persisted yet
+        // Either the documentNode has no content collection or the documentNode is just created and not persisted yet
         if (empty($contentCollectionPaths)) {
             return [];
         }
