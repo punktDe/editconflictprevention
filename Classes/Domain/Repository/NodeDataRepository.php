@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Neos\ContentRepository\Domain\Model\NodeData;
 use Neos\ContentRepository\Domain\Model\Workspace;
 use Neos\Flow\Persistence\Repository;
+use PunktDe\EditConflictPrevention\Service\WorkspaceService;
 
 /**
  * @Flow\Scope("singleton")
@@ -33,14 +34,22 @@ class NodeDataRepository extends Repository
     protected $nodeTypeManager;
 
     /**
+     * @Flow\Inject
+     * @var WorkspaceService
+     */
+    protected $workspaceService;
+
+    /**
      * First get all content collection nodes which are a direct child of the given document.
      * Then get all nodes that are children of that path
      *
      * @param NodeInterface $documentNode
      * @param Workspace $userWorkspace
+     * @param bool $ignoreInternalAndPrivateWorkspaces
      * @return NodeData[]
+     * @throws \Neos\ContentRepository\Exception\NodeTypeNotFoundException
      */
-    public function findChangedSubNodesInOtherWorkspaces(NodeInterface $documentNode, Workspace $userWorkspace): array
+    public function findChangedSubNodesInOtherWorkspaces(NodeInterface $documentNode, Workspace $userWorkspace, bool $ignoreInternalAndPrivateWorkspaces = true): array
     {
         $contentCollectionNodeTypes = array_merge([$this->nodeTypeManager->getNodeType(self::NODETYPE_CONTENT_COLLECTION)], $this->nodeTypeManager->getSubNodeTypes(self::NODETYPE_CONTENT_COLLECTION));
 
@@ -60,23 +69,32 @@ class NodeDataRepository extends Repository
             return [];
         }
 
+        $ignoredWorkspaces = ['live'];
+        if ($ignoreInternalAndPrivateWorkspaces) {
+            $ignoredWorkspaces = array_merge(
+                $ignoredWorkspaces,
+                $this->workspaceService->getInternalWorkspaceNames(),
+                $this->workspaceService->getPrivateWorkspaceNames()
+            );
+        }
+
         $queryBuilder = $this->entityManager->createQueryBuilder();
         $queryBuilder->select('n')
             ->from(NodeData::class, 'n')
             ->where('n.workspace != :userWorkspace')
-            ->andWhere('n.workspace != :liveWorkspace')
+            ->andWhere($queryBuilder->expr()->not($queryBuilder->expr()->in('n.workspace', ':ignoredWorkspaces')))
             ->andWhere('n.dimensionsHash = :dimensionsHash');
 
         $queryBuilder->setParameters([
             ':userWorkspace' => $userWorkspace->getName(),
-            ':liveWorkspace' => 'live',
+            ':ignoredWorkspaces' => $ignoredWorkspaces,
             ':dimensionsHash' => $documentNode->getNodeData()->getDimensionsHash(),
         ]);
 
         $pathCandidates = [];
 
         foreach (array_unique($contentCollectionPaths) as $contentCollectionPath) {
-            $pathParameterName = ':x' . md5($contentCollectionPath);
+            $pathParameterName = ':ccp_' . md5($contentCollectionPath);
             $pathCandidates[] = $queryBuilder->expr()->like('n.path', $pathParameterName);
             $queryBuilder->setParameter($pathParameterName, $contentCollectionPath . '%');
         }
