@@ -66,7 +66,7 @@ class WorkspaceService
             $query->logicalAnd(
                 $query->logicalNot($query->equals('baseWorkspace', null)),
                 $query->logicalNot($query->equals('owner', null)),
-                $query->logicalNot('name', Workspace::PERSONAL_WORKSPACE_PREFIX . '%')
+                $query->logicalNot($query->equals('name', Workspace::PERSONAL_WORKSPACE_PREFIX . '%'))
             )
         )->execute();
 
