@@ -55,6 +55,11 @@ class WorkspaceService
         return $this->internalWorkspaceNames;
     }
 
+    /**
+     * See Workspace::isPrivateWorkspace
+     *
+     * @return array
+     */
     public function getPrivateWorkspaceNames(): array
     {
         if (is_array($this->privateWorkspaceNames)) {
@@ -62,11 +67,12 @@ class WorkspaceService
         }
 
         $query = $this->workspaceRepository->createQuery();
+
         $result = $query->matching(
             $query->logicalAnd(
                 $query->logicalNot($query->equals('baseWorkspace', null)),
                 $query->logicalNot($query->equals('owner', null)),
-                $query->logicalNot($query->equals('name', Workspace::PERSONAL_WORKSPACE_PREFIX . '%'))
+                $query->logicalNot($query->like('name', Workspace::PERSONAL_WORKSPACE_PREFIX . '%'))
             )
         )->execute();
 
