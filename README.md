@@ -17,19 +17,23 @@ Clicking that warning opens a modal, showing a list of changed nodes and where t
 
 There are also privilege targets available which prevents editing a document and all containing content nodes when changes in other workspaces are detected. To prevent an editor from editing such pages, add the following privilege configuration to your `Policy.yaml` 
 
-	roles:
-	  'Neos.Neos:AbstractEditor':
-	    privileges:
-	      -
-	        privilegeTarget: 'PunktDe.EditConflictPrevention.EditNodeWithChangesInOtherWorkspaces'
-	        permission: DENY
-	      -
-	        privilegeTarget: 'PunktDe.EditConflictPrevention.EditNodePropertiesWithChangesInOtherWorkspaces'
-	        permission: DENY
+```yaml
+roles:
+  'Neos.Neos:AbstractEditor':
+  priviliges:
+    -
+    privilegeTarget: 'PunktDe.EditConflictPrevention.EditNodeWithChangesInOtherWorkspaces'
+    permission: DENY
+    -
+    privilegeTarget: 'PunktDe.EditConflictPrevention.EditNodePropertiesWithChangesInOtherWorkspaces'
+    permission: DENY
+```
 
 ## Installation
 
-    $ composer require punktde/editconflictprevention  
+```bash
+composer require punktde/editconflictprevention  
+```
 
 ## Configuration
 
