@@ -20,13 +20,13 @@ There are also privilege targets available which prevents editing a document and
 ```yaml
 roles:
   'Neos.Neos:AbstractEditor':
-  priviliges:
-    -
-    privilegeTarget: 'PunktDe.EditConflictPrevention.EditNodeWithChangesInOtherWorkspaces'
-    permission: DENY
-    -
-    privilegeTarget: 'PunktDe.EditConflictPrevention.EditNodePropertiesWithChangesInOtherWorkspaces'
-    permission: DENY
+    privileges:
+      -
+        privilegeTarget: 'PunktDe.EditConflictPrevention.EditNodeWithChangesInOtherWorkspaces'
+        permission: DENY
+      -
+        privilegeTarget: 'PunktDe.EditConflictPrevention.EditNodePropertiesWithChangesInOtherWorkspaces'
+        permission: DENY
 ```
 
 ## Installation
