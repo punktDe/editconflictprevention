@@ -5,6 +5,7 @@ namespace PunktDe\EditConflictPrevention\Domain\Repository;
 
 use Neos\Flow\Annotations as Flow;
 use Neos\ContentRepository\Domain\Model\NodeInterface;
+use Neos\ContentRepository\Domain\Model\NodeType;
 use Neos\ContentRepository\Domain\Service\NodeTypeManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Neos\ContentRepository\Domain\Model\NodeData;
@@ -51,7 +52,15 @@ class NodeDataRepository extends Repository
      */
     public function findChangedSubNodesInOtherWorkspaces(NodeInterface $documentNode, Workspace $userWorkspace, bool $ignoreInternalAndPrivateWorkspaces = true): array
     {
-        $contentCollectionNodeTypes = array_merge([$this->nodeTypeManager->getNodeType(self::NODETYPE_CONTENT_COLLECTION)], $this->nodeTypeManager->getSubNodeTypes(self::NODETYPE_CONTENT_COLLECTION));
+        $contentCollectionNodeTypes = \array_map(
+            static function (NodeType $nodeType) {
+                return $nodeType->getName();
+            },
+            array_merge(
+                [ $this->nodeTypeManager->getNodeType(self::NODETYPE_CONTENT_COLLECTION) ],
+                $this->nodeTypeManager->getSubNodeTypes(self::NODETYPE_CONTENT_COLLECTION)
+            )
+        );
 
         $queryBuilder = $this->entityManager->createQueryBuilder();
         $queryBuilder->select('n.path')
