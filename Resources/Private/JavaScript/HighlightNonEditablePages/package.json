@@ -8,7 +8,7 @@
     },
     "devDependencies": {
         "webpack": "^3.12.0",
-        "@neos-project/neos-ui-extensibility": "~1.0.14",
+        "@neos-project/neos-ui-extensibility-webpack-adapter": "8.3.3",
         "@neos-project/react-ui-components": "5.2.3",
         "lodash.upperfirst": "^4.3.1"
     },
