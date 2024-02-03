@@ -1,3 +1,4 @@
+import 'regenerator-runtime/runtime';
 import {takeEvery, takeLatest, put, select} from 'redux-saga/effects';
 import {actionTypes, selectors} from '@neos-project/neos-ui-redux-store';
 import {fetchWithErrorHandling} from '@neos-project/neos-ui-backend-connector';

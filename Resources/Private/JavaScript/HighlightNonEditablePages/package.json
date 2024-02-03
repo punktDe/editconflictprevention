@@ -7,10 +7,15 @@
         "watch": "neos-react-scripts watch"
     },
     "devDependencies": {
-        "webpack": "^3.12.0",
-        "@neos-project/neos-ui-extensibility": "~1.0.14",
-        "@neos-project/react-ui-components": "5.2.3",
-        "lodash.upperfirst": "^4.3.1"
+        "webpack": "5.82.1",
+        "@neos-project/neos-ui-extensibility": "8.3.3",
+        "@neos-project/neos-ui-extensibility-webpack-adapter": "8.3.3",
+        "@neos-project/react-ui-components": "7.3.4",
+        "lodash.upperfirst": "^4.3.1",
+        "prop-types": "^15.8.1",
+        "react": "^16.14.0",
+        "react-dom": "^16.14.0",
+        "regenerator-runtime": "^0.14.0"
     },
     "neos": {
         "buildTargetDirectory": "../../../Public/HighlightNonEditablePages"

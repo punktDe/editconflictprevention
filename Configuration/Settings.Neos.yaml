@@ -5,6 +5,9 @@ Neos:
         javascript:
           'PunktDe.EditConflictPrevention:HighlightNonEditablePage':
             resource: resource://PunktDe.EditConflictPrevention/Public/HighlightNonEditablePages/Plugin.js
+        stylesheets:
+          'PunktDe.EditConflictPrevention:HighlightNonEditablePage':
+            resource: resource://PunktDe.EditConflictPrevention/Public/HighlightNonEditablePages/Plugin.css
     userInterface:
       translation:
         autoInclude:
@@ -24,4 +27,3 @@ Neos:
       routes:
         'PunktDe.EditConflictPrevention':
           position: 'before Neos.Neos'
-
