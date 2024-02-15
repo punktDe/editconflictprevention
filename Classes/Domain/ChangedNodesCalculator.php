@@ -188,6 +188,9 @@ class ChangedNodesCalculator
             return $this->changedNodeDataForDocument[(string)$documentNode];
         }
 
+        if ($this->userService->getPersonalWorkspace() === null) {
+            return [];
+        }
         if ($this->documentTypeIsExcluded($documentNode)) {
             return [];
         }
